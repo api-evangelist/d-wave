@@ -1,0 +1,45 @@
+extends: [[spectral:oas, recommended]]
+rules:
+  dwave-info-contact:
+    description: D-Wave API specs must include a contact pointing to docs.dwavequantum.com.
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  dwave-server-sapi:
+    description: Production SAPI servers must be under cloud.dwavesys.com or api.dwavesys.com.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://(([a-z0-9-]+\.)?cloud|api)\.dwavesys\.com/'
+  dwave-security-token:
+    description: Endpoints must declare the X-Auth-Token SAPI scheme or LeapOAuth.
+    severity: warn
+    given: $.components.securitySchemes
+    then:
+      function: truthy
+  dwave-operation-id-camelcase:
+    description: operationId should be camelCase.
+    severity: warn
+    given: $.paths[*][*].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]+$'
+  dwave-summary-title-case:
+    description: Operation summary should be Title Case.
+    severity: warn
+    given: $.paths[*][*].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][^a-z].*'
+  dwave-problem-type-enum:
+    description: Problem type fields must use the canonical six-value enum.
+    severity: warn
+    given: "$..*[?(@property === 'type')]"
+    then:
+      function: truthy

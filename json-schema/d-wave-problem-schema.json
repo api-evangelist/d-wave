@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/d-wave/main/json-schema/d-wave-problem-schema.json",
+  "title": "D-Wave Problem Job",
+  "description": "Problem submission payload accepted by POST /problems/.",
+  "type": "object",
+  "required": ["solver", "type", "data"],
+  "properties": {
+    "solver": {"type": "string"},
+    "type": {"type": "string", "enum": ["ising", "qubo", "bqm", "cqm", "dqm", "nl"]},
+    "data": {
+      "type": "object",
+      "required": ["format"],
+      "properties": {
+        "format": {"type": "string", "enum": ["qp", "bq", "ref"]},
+        "lin": {"type": "array", "items": {"type": "number"}},
+        "quad": {"type": "array", "items": {"type": "number"}},
+        "offset": {"type": "number"},
+        "data": {"type": "string", "description": "Base64-encoded payload (bq) or external reference body."},
+        "url": {"type": "string", "format": "uri", "description": "Used when format=ref."},
+        "auth_method": {"type": "string", "enum": ["sapi-token"]}
+      }
+    },
+    "params": {"type": "object", "additionalProperties": true},
+    "label": {"type": "string", "maxLength": 1024}
+  }
+}

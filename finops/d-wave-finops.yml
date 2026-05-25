@@ -1,0 +1,58 @@
+name: D-Wave FinOps
+description: |
+  FinOps surface for D-Wave Leap aligned to the FinOps Framework and the FOCUS data
+  specification. D-Wave bills around solver access time deducted from project quota.
+  Cost transparency is delivered via Leap project dashboards and quote-based commercial
+  contracts rather than a public usage-cost API at this time.
+version: '0.1'
+provider: d-wave
+url: https://www.dwavequantum.com/solutions-and-products/cloud-platform/
+billing_model:
+  type: subscription-plus-metered
+  description: |
+    Commercial plans (Premier, Enterprise) include a monthly solver access time
+    allowance. Usage is metered per problem in microseconds (QPU) and seconds (hybrid)
+    and charged against the project quota. Overages and on-prem Advantage2 systems are
+    negotiated separately.
+focus:
+  charge_categories:
+  - Usage
+  - Subscription
+  charge_classes:
+  - Standard
+  service_categories:
+  - Compute (Quantum)
+  - Compute (Hybrid Quantum-Classical)
+  pricing_units:
+  - microsecond_qpu_access
+  - second_hybrid_run_time
+metering_signals:
+- name: qpu_access_time
+  unit: microseconds
+  source: answer.timing.qpu_access_time
+  description: Total wall-clock time the QPU was engaged for a job (programming + sampling + readout).
+- name: qpu_sampling_time
+  unit: microseconds
+  source: answer.timing.qpu_sampling_time
+- name: run_time
+  unit: microseconds
+  source: answer.timing.run_time
+  description: Hybrid solver wall-clock time.
+- name: charge_time
+  unit: microseconds
+  source: answer.timing.charge_time
+  description: Time deducted from the project quota for the job.
+cost_management:
+- Use solver `time_limit` to bound hybrid solver charge_time.
+- Use `num_reads` and `annealing_time` to bound QPU charge_time.
+- Use the Leap project dashboard to monitor remaining monthly quota.
+- Use the Leap Account API to retrieve project context and route workloads.
+unsupported:
+- name: Programmatic Usage / Cost API
+  notes: D-Wave does not publish a standalone usage / cost REST endpoint as of 2026-05; quota and usage
+    are surfaced through the Leap project dashboard.
+sources:
+- https://www.dwavequantum.com/solutions-and-products/cloud-platform/
+- https://docs.dwavequantum.com/en/latest/
+- https://github.com/dwavesystems/dwave-cloud-client
+updated: '2026-05-25'

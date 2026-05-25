@@ -1,0 +1,27 @@
+name: D-Wave Leap Account & Project Management
+description: |
+  OAuth-backed Leap Account endpoints for listing projects, retrieving the active project,
+  and provisioning project-scoped SAPI tokens for use against the Solver API.
+api: d-wave-leap-account-api
+version: '0.1'
+operations:
+- id: get_active_project
+  method: GET
+  path: /account/active_project/oauth/
+- id: list_projects
+  method: GET
+  path: /account/projects/oauth/
+- id: get_project_token
+  method: GET
+  path: /account/token/oauth/
+inputs:
+- name: project_id
+  type: string
+outputs:
+- name: project
+  type: object
+- name: projects
+  type: array
+- name: token
+  type: string
+  description: Opaque SAPI token sent as X-Auth-Token on SAPI requests.

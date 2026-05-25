@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.dwavesys.com/metadata/v1/regions/",
+    "headers": {
+      "X-Auth-Token": "DEV-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "Accept": "application/vnd.dwave.metadata.regions+json;version=1.0"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "code": "na-west-1",
+        "name": "North America (West)",
+        "endpoint": "https://na-west-1.cloud.dwavesys.com/sapi/v2"
+      },
+      {
+        "code": "eu-central-1",
+        "name": "Europe (Central)",
+        "endpoint": "https://eu-central-1.cloud.dwavesys.com/sapi/v2"
+      }
+    ]
+  }
+}

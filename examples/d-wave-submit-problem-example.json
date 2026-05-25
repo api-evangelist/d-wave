@@ -1,0 +1,55 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://cloud.dwavesys.com/sapi/v2/problems/",
+    "headers": {
+      "X-Auth-Token": "DEV-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "Content-Type": "application/json",
+      "Accept": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+    },
+    "body": {
+      "solver": "Advantage_system6.4",
+      "type": "ising",
+      "data": {
+        "format": "qp",
+        "lin": [-1.0, 1.0, -1.0, 1.0],
+        "quad": [-1.0, -1.0, -1.0],
+        "offset": 0.0
+      },
+      "params": {
+        "num_reads": 1000,
+        "annealing_time": 20.0,
+        "auto_scale": true,
+        "answer_mode": "histogram"
+      },
+      "label": "max-cut-demo"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "5e7c7a98-3f8d-4d8a-9c2c-1d6e4f9a2b11",
+      "type": "ising",
+      "solver": "Advantage_system6.4",
+      "submitted_on": "2026-05-25T12:34:56.000Z",
+      "status": "COMPLETED",
+      "solved_on": "2026-05-25T12:34:56.812Z",
+      "label": "max-cut-demo",
+      "answer": {
+        "format": "qp",
+        "active_variables": [0, 1, 2, 3],
+        "energies": [-3.0, -2.0, -1.0],
+        "num_occurrences": [842, 142, 16],
+        "solutions": [[-1, 1, -1, 1], [-1, 1, 1, 1], [1, 1, -1, 1]],
+        "num_variables": 4,
+        "timing": {
+          "qpu_sampling_time": 121420,
+          "qpu_anneal_time_per_sample": 20,
+          "qpu_readout_time_per_sample": 101,
+          "qpu_access_time": 125316,
+          "qpu_programming_time": 14580
+        }
+      }
+    }
+  }
+}

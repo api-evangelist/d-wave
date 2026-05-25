@@ -1,0 +1,96 @@
+name: D-Wave Vocabulary
+version: '0.1'
+description: Operational, capability, and domain vocabulary for the D-Wave quantum annealing platform.
+dimensions:
+  systems:
+  - id: advantage
+    label: Advantage
+    description: 5,000+ qubit annealing QPU with Pegasus topology.
+  - id: advantage2
+    label: Advantage2
+    description: Next-generation annealing QPU with Zephyr topology and improved coherence.
+  topologies:
+  - id: chimera
+    label: Chimera
+    description: Original D-Wave 2000Q qubit graph (4x4 K4,4 bipartite cells).
+  - id: pegasus
+    label: Pegasus
+    description: Advantage qubit graph; each qubit has up to 15 couplers.
+  - id: zephyr
+    label: Zephyr
+    description: Advantage2 qubit graph; each qubit has up to 20 couplers.
+  problem_types:
+  - id: ising
+    label: Ising
+    description: Linear (h) and quadratic (J) biases over spin variables in {-1, +1}.
+  - id: qubo
+    label: QUBO
+    description: Quadratic unconstrained binary optimization over variables in {0, 1}.
+  - id: bqm
+    label: Binary Quadratic Model
+    description: Unified representation that subsumes Ising and QUBO.
+  - id: cqm
+    label: Constrained Quadratic Model
+    description: Objective plus equality / inequality constraints with binary, integer, or real variables.
+  - id: dqm
+    label: Discrete Quadratic Model
+    description: Variables with discrete labels (more than binary).
+  - id: nl
+    label: Nonlinear Model
+    description: General nonlinear formulation for industrial optimization via dwave-optimization.
+  solver_categories:
+  - id: qpu
+    label: QPU Sampler
+    description: Direct quantum annealing on physical qubits.
+  - id: hybrid
+    label: Hybrid Solver
+    description: Quantum-classical solver running on Leap cloud (LeapHybrid*).
+  - id: software
+    label: Software Solver
+    description: Classical reference solver (neal, tabu, greedy).
+  problem_states:
+  - {id: pending, label: PENDING}
+  - {id: in_progress, label: IN_PROGRESS}
+  - {id: completed, label: COMPLETED, terminal: true}
+  - {id: failed, label: FAILED, terminal: true}
+  - {id: cancelled, label: CANCELLED, terminal: true}
+  encoding_formats:
+  - {id: qp, label: QP, description: Compact array encoding for QPU Ising/QUBO problems.}
+  - {id: bq, label: BQ, description: dimod-serialized model (BQM / CQM / DQM).}
+  - {id: ref, label: REF, description: External binary reference; download via SAPI-token.}
+  capabilities:
+  - id: solver_discovery
+    label: Solver Discovery
+  - id: problem_submission
+    label: Problem Submission
+  - id: problem_monitoring
+    label: Problem Monitoring
+  - id: answer_retrieval
+    label: Answer Retrieval
+  - id: problem_cancellation
+    label: Problem Cancellation
+  - id: region_routing
+    label: Region Routing
+  - id: project_token_management
+    label: Project Token Management
+  ocean_packages:
+  - dimod
+  - dwave-system
+  - dwave-cloud-client
+  - dwave-hybrid
+  - dwave-samplers
+  - dwave-optimization
+  - dwave-preprocessing
+  - dwave-inspector
+  - dwave-greedy
+  - dwave-tabu
+  - dwave-neal
+  - minorminer
+  - dwave-graphs
+  - dwave-gate
+  - penaltymodel
+sources:
+- https://docs.dwavequantum.com/en/latest/
+- https://github.com/dwavesystems/dwave-cloud-client
+- https://github.com/dwavesystems/dwave-ocean-sdk
+updated: '2026-05-25'

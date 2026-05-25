@@ -1,0 +1,43 @@
+name: D-Wave QPU Sampling
+description: |
+  Submit Ising or QUBO problems directly to D-Wave annealing QPUs (Advantage, Advantage2)
+  with QPU-specific parameters: num_reads, annealing_time, anneal_schedule, h_gain_schedule,
+  chain_strength, reverse anneal, and flux biases. Returns sample energies, occurrences,
+  and detailed QPU timing breakdown.
+api: d-wave-qpu-samplers
+version: '0.1'
+operations:
+- id: submit_qpu
+  method: POST
+  path: /problems/
+inputs:
+- name: solver
+  type: string
+  description: QPU solver id (e.g. Advantage_system6.4, Advantage2_system1.7).
+- name: lin
+  type: array
+  description: Linear biases (h).
+- name: quad
+  type: array
+  description: Quadratic couplings (J) over active couplers.
+- name: num_reads
+  type: integer
+- name: annealing_time
+  type: number
+- name: chain_strength
+  type: number
+- name: anneal_schedule
+  type: array
+- name: reverse_anneal_schedule
+  type: array
+- name: initial_state
+  type: array
+outputs:
+- name: energies
+  type: array
+- name: num_occurrences
+  type: array
+- name: solutions
+  type: array
+- name: timing
+  type: object

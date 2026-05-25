@@ -1,0 +1,42 @@
+name: D-Wave Problem Monitoring
+description: |
+  Poll problem status, retrieve answers, fetch problem info and diagnostic messages.
+  Status flow: PENDING > IN_PROGRESS > COMPLETED | FAILED | CANCELLED (terminal). Up to
+  1,000 problem IDs per batch status poll with optional long-poll timeout while problems
+  remain non-terminal.
+api: d-wave-problems-api
+version: '0.1'
+operations:
+- id: list_problems
+  method: GET
+  path: /problems/
+- id: get_problem
+  method: GET
+  path: /problems/{problem_id}
+- id: get_problem_info
+  method: GET
+  path: /problems/{problem_id}/info
+- id: get_problem_answer
+  method: GET
+  path: /problems/{problem_id}/answer
+- id: get_problem_messages
+  method: GET
+  path: /problems/{problem_id}/messages
+inputs:
+- name: problem_id
+  type: string
+- name: status
+  type: string
+  enum: [PENDING, IN_PROGRESS, COMPLETED, FAILED, CANCELLED]
+- name: solver
+  type: string
+- name: max_results
+  type: integer
+  maximum: 1000
+- name: timeout
+  type: integer
+outputs:
+- name: status_list
+  type: array
+- name: answer
+  type: object

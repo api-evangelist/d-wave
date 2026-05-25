@@ -1,0 +1,23 @@
+name: D-Wave Shared Capability Primitives
+description: |
+  Reusable primitives shared across D-Wave capability workflows: SAPI token auth, region
+  resolution, problem encoding, and answer download via binary-ref.
+version: '0.1'
+primitives:
+- id: sapi_token_auth
+  type: header_auth
+  header: X-Auth-Token
+  description: Project-scoped SAPI token retrieved from Leap Account API.
+- id: leap_oauth
+  type: oauth2
+  authorization_url: https://cloud.dwavesys.com/leap/oauth/authorize
+  token_url: https://cloud.dwavesys.com/leap/oauth/token
+- id: region_resolution
+  description: Resolve regional SAPI base URL by calling Metadata API /regions/.
+- id: problem_encoding
+  formats: [qp, bq, ref]
+- id: binary_ref_download
+  description: Download large hybrid answers via SAPI-token-authenticated GET on answer.url.
+- id: problem_lifecycle
+  states: [PENDING, IN_PROGRESS, COMPLETED, FAILED, CANCELLED]
+  terminal_states: [COMPLETED, FAILED, CANCELLED]

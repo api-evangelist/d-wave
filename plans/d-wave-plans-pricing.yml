@@ -1,0 +1,78 @@
+name: D-Wave Leap Plans & Pricing
+description: |
+  D-Wave's commercial offering revolves around the Leap quantum cloud service. The
+  publicly documented surface is a free developer trial and a commercial subscription
+  (Premier / Enterprise) covering monthly QPU and hybrid solver access, with usage
+  metered in seconds of solver access time. Specific commercial pricing is quote-based
+  and arranged via D-Wave sales / the Launch program.
+version: '0.1'
+provider: d-wave
+url: https://www.dwavequantum.com/solutions-and-products/cloud-platform/
+plans:
+- id: free-developer
+  name: Free Developer Trial
+  description: Free trial access to Leap for evaluation and learning.
+  audience: developers
+  entries:
+  - geo: Global
+    unit: month
+    label: Quantum / Hybrid Access Minutes
+    price: Free
+    metric: minute
+    timeFrame: month
+    description: Time-boxed free quota for QPU and hybrid solver access during the trial.
+  elements:
+  - Access to D-Wave QPU samplers (Advantage / Advantage2) via SAPI
+  - Access to Leap hybrid solvers (BQM, CQM, DQM, NL)
+  - Ocean SDK and dwave-cloud-client open source
+  - Leap IDE in-browser development environment
+  - Community forums support
+- id: premier
+  name: Premier (Commercial)
+  description: Commercial subscription for production workloads.
+  audience: businesses
+  entries:
+  - geo: Global
+    unit: 1
+    label: Subscription
+    price: Contact
+    metric: subscription
+    timeFrame: month
+    description: Commercial subscription with monthly QPU and hybrid solver access; quote-based.
+  elements:
+  - Production-grade access to QPU and hybrid solvers
+  - Higher monthly solver access quota
+  - Standard SLA and support
+  - Eligible for D-Wave Launch professional services
+- id: enterprise
+  name: Enterprise
+  description: Custom enterprise agreements including on-premises Advantage2 systems.
+  audience: enterprises
+  entries:
+  - geo: Global
+    unit: 1
+    label: Custom
+    price: Contact
+    metric: contract
+    timeFrame: year
+  elements:
+  - On-premises Advantage2 system option
+  - Enterprise SLA
+  - Dedicated solver capacity
+  - D-Wave Launch program engagements
+  - Custom hybrid solver tuning and professional services
+metering:
+- name: QPU access time
+  unit: microseconds
+  description: Reported in answer.timing.qpu_access_time on every QPU sample.
+- name: Hybrid solver run time
+  unit: seconds
+  description: Reported via answer.timing.run_time on hybrid solver jobs.
+- name: Charge time
+  unit: seconds
+  description: Reported in answer.timing.charge_time and deducted from project quota.
+sources:
+- https://www.dwavequantum.com/solutions-and-products/cloud-platform/
+- https://www.dwavequantum.com/get-started-with-d-wave/
+- https://docs.dwavequantum.com/en/latest/
+updated: '2026-05-25'

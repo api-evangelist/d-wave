@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://cloud.dwavesys.com/sapi/v2/problems/",
+    "headers": {
+      "X-Auth-Token": "DEV-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "solver": "Advantage2_system1.7",
+      "type": "ising",
+      "data": {
+        "format": "qp",
+        "lin": [0.0, 0.0, 0.0, 0.0],
+        "quad": [-1.0, -1.0, -1.0, -1.0],
+        "offset": 0.0
+      },
+      "params": {
+        "num_reads": 2000,
+        "annealing_time": 5.0,
+        "anneal_schedule": [[0.0, 0.0], [20.0, 0.5], [200.0, 0.5], [220.0, 1.0]],
+        "auto_scale": true
+      },
+      "label": "frustrated-loop-reverse-anneal"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "f3a9c2d4-1b22-4cf1-9e8e-77a8aa1c8c01",
+      "type": "ising",
+      "solver": "Advantage2_system1.7",
+      "submitted_on": "2026-05-25T13:15:00.000Z",
+      "status": "COMPLETED",
+      "solved_on": "2026-05-25T13:15:01.214Z",
+      "answer": {
+        "format": "qp",
+        "active_variables": [0, 1, 2, 3],
+        "energies": [-4.0, -2.0],
+        "num_occurrences": [1880, 120],
+        "solutions": [[-1, -1, -1, -1], [1, 1, -1, -1]],
+        "num_variables": 4,
+        "timing": {
+          "qpu_sampling_time": 410000,
+          "qpu_anneal_time_per_sample": 5,
+          "qpu_access_time": 420000,
+          "qpu_programming_time": 10000
+        }
+      }
+    }
+  }
+}

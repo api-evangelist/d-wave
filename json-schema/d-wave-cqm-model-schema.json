@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/d-wave/main/json-schema/d-wave-cqm-model-schema.json",
+  "title": "D-Wave Constrained Quadratic Model (CQM)",
+  "description": "Logical representation of a dimod ConstrainedQuadraticModel for submission to LeapHybridCQMSampler.",
+  "type": "object",
+  "required": ["objective"],
+  "properties": {
+    "objective": {
+      "type": "object",
+      "properties": {
+        "linear": {"type": "object", "additionalProperties": {"type": "number"}},
+        "quadratic": {"type": "object", "additionalProperties": {"type": "number"}},
+        "offset": {"type": "number"}
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sense", "rhs", "lhs"],
+        "properties": {
+          "label": {"type": "string"},
+          "sense": {"type": "string", "enum": ["==", "<=", ">="]},
+          "rhs": {"type": "number"},
+          "lhs": {
+            "type": "object",
+            "properties": {
+              "linear": {"type": "object", "additionalProperties": {"type": "number"}},
+              "quadratic": {"type": "object", "additionalProperties": {"type": "number"}}
+            }
+          },
+          "weight": {"type": "number", "description": "Penalty weight when soft."},
+          "penalty": {"type": "string", "enum": ["linear", "quadratic"]}
+        }
+      }
+    },
+    "variables": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "vartype": {"type": "string", "enum": ["BINARY", "SPIN", "INTEGER", "REAL"]},
+          "lower_bound": {"type": "number"},
+          "upper_bound": {"type": "number"}
+        }
+      }
+    }
+  }
+}

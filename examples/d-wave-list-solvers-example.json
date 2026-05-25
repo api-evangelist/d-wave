@@ -1,0 +1,67 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://cloud.dwavesys.com/sapi/v2/solvers/remote/",
+    "headers": {
+      "X-Auth-Token": "DEV-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "Accept": "application/vnd.dwave.sapi.solver-definition-list+json;version=3.0.0"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "id": "Advantage_system6.4",
+        "status": "ONLINE",
+        "avg_load": 0.18,
+        "description": "Advantage QPU (Pegasus topology, 5627 active qubits)",
+        "properties": {
+          "category": "qpu",
+          "supported_problem_types": ["ising", "qubo"],
+          "num_qubits": 5760,
+          "num_active_qubits": 5627,
+          "topology": {"type": "pegasus", "shape": [16]},
+          "annealing_time_range": [0.5, 2000.0],
+          "default_annealing_time": 20.0,
+          "num_reads_range": [1, 10000],
+          "h_range": [-4.0, 4.0],
+          "j_range": [-1.0, 1.0]
+        }
+      },
+      {
+        "id": "Advantage2_system1.7",
+        "status": "ONLINE",
+        "avg_load": 0.32,
+        "description": "Advantage2 QPU (Zephyr topology)",
+        "properties": {
+          "category": "qpu",
+          "supported_problem_types": ["ising", "qubo"],
+          "num_qubits": 1248,
+          "topology": {"type": "zephyr", "shape": [6]}
+        }
+      },
+      {
+        "id": "hybrid_nonlinear_program_v1",
+        "status": "ONLINE",
+        "description": "Leap Hybrid Nonlinear Program Solver",
+        "properties": {
+          "category": "hybrid",
+          "supported_problem_types": ["nl"],
+          "maximum_time_limit_hrs": 24.0,
+          "minimum_time_limit_s": 5.0
+        }
+      },
+      {
+        "id": "hybrid_constrained_quadratic_model_version1p",
+        "status": "ONLINE",
+        "description": "Leap Hybrid CQM Solver",
+        "properties": {
+          "category": "hybrid",
+          "supported_problem_types": ["cqm"],
+          "maximum_number_of_variables": 500000,
+          "maximum_number_of_constraints": 100000
+        }
+      }
+    ]
+  }
+}

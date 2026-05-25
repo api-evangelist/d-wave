@@ -1,0 +1,427 @@
+aid: d-wave
+url: https://raw.githubusercontent.com/api-evangelist/d-wave/refs/heads/main/apis.yml
+apis:
+- aid: d-wave:d-wave-solver-api
+  name: D-Wave Solver API (SAPI) - Solvers
+  tags:
+  - Quantum Computing
+  - Quantum Annealing
+  - Solvers
+  - Optimization
+  humanURL: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+  baseURL: https://cloud.dwavesys.com/sapi/v2
+  properties:
+  - url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+    type: Documentation
+  - url: openapi/d-wave-solvers-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/d-wave-solver-configuration-schema.json
+    type: JSONSchema
+  - url: json-ld/d-wave-context.jsonld
+    type: JSONLD
+  - url: capabilities/solvers-discovery.yaml
+    type: NaftikoCapability
+  - url: examples/d-wave-list-solvers-example.json
+    type: Example
+  description: List, inspect, and discover D-Wave solvers available to the authenticated project, including
+    quantum annealing QPU samplers (Advantage, Advantage2) and Leap hybrid samplers (BQM, CQM, DQM, NL).
+    Solvers carry capability metadata (qubit count, topology, supported problem types, parameters, properties)
+    so clients can match a workload to the correct sampler. Versioned via vendor media type
+    `application/vnd.dwave.sapi.solver-definition+json;version~=3.0`.
+- aid: d-wave:d-wave-problems-api
+  name: D-Wave Solver API (SAPI) - Problems
+  tags:
+  - Quantum Computing
+  - Quantum Annealing
+  - Problems
+  - Sampling
+  - Optimization
+  humanURL: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+  baseURL: https://cloud.dwavesys.com/sapi/v2
+  properties:
+  - url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+    type: Documentation
+  - url: openapi/d-wave-problems-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/d-wave-problem-schema.json
+    type: JSONSchema
+  - url: json-schema/d-wave-problem-answer-schema.json
+    type: JSONSchema
+  - url: capabilities/problems-submission.yaml
+    type: NaftikoCapability
+  - url: capabilities/problems-monitoring.yaml
+    type: NaftikoCapability
+  - url: examples/d-wave-submit-problem-example.json
+    type: Example
+  - url: examples/d-wave-problem-status-example.json
+    type: Example
+  description: Submit, monitor, retrieve, and cancel quantum and hybrid problem jobs. Supports the canonical
+    problem types ising, qubo, bqm, cqm, dqm, and nl with three encoding formats (qp, bq, ref). Problems flow
+    through PENDING > IN_PROGRESS > COMPLETED | FAILED | CANCELLED terminal states. Endpoints support blocking
+    submit (single problem), batch async submit (multi-problem), short status polling, full-info retrieval,
+    answer download (inline or binary-ref via SAPI-token), problem messages, and single/bulk cancel. Up to
+    1,000 problem IDs per status batch.
+- aid: d-wave:d-wave-metadata-api
+  name: D-Wave Metadata API - Regions
+  tags:
+  - Quantum Computing
+  - Metadata
+  - Regions
+  humanURL: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+  baseURL: https://api.dwavesys.com/metadata/v1
+  properties:
+  - url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+    type: Documentation
+  - url: openapi/d-wave-metadata-api-openapi.yml
+    type: OpenAPI
+  - url: capabilities/metadata-regions.yaml
+    type: NaftikoCapability
+  - url: examples/d-wave-list-regions-example.json
+    type: Example
+  description: Discover D-Wave Leap regions and their per-region SAPI endpoints. The Metadata API is the
+    canonical region resolver — clients call `/regions/` to enumerate available regions (e.g. `na-west-1`,
+    `eu-central-1`) and `/regions/{code}` to retrieve a single region's SAPI base URL. Used by the Ocean
+    `dwave-cloud-client` to route problem submissions to the correct regional SAPI cluster. Versioned via
+    `application/vnd.dwave.metadata.regions+json;version~=1.0`.
+- aid: d-wave:d-wave-leap-account-api
+  name: D-Wave Leap Account API
+  tags:
+  - Quantum Computing
+  - Leap
+  - Account
+  - Projects
+  - OAuth
+  humanURL: https://docs.dwavequantum.com/en/latest/leap_sapi/leap_api.html
+  baseURL: https://cloud.dwavesys.com/leap/api
+  properties:
+  - url: https://docs.dwavequantum.com/en/latest/leap_sapi/leap_api.html
+    type: Documentation
+  - url: openapi/d-wave-leap-account-api-openapi.yml
+    type: OpenAPI
+  - url: capabilities/leap-account-projects.yaml
+    type: NaftikoCapability
+  - url: examples/d-wave-leap-projects-example.json
+    type: Example
+  description: Manage Leap account projects and per-project SAPI tokens via OAuth. Endpoints include
+    `account/active_project/oauth/` (retrieve user's active project), `account/projects/oauth/` (list all
+    accessible projects), and `account/token/oauth/?project_id=...` (retrieve a project SAPI token for use
+    against the Solver API). Backs the Ocean SDK's interactive Leap authorization flow, allowing developers
+    to onboard, switch projects, and rotate SAPI tokens without leaving their development environment.
+- aid: d-wave:d-wave-hybrid-solvers
+  name: D-Wave Leap Hybrid Solvers
+  tags:
+  - Quantum Computing
+  - Hybrid
+  - Optimization
+  - BQM
+  - CQM
+  - DQM
+  - Nonlinear
+  humanURL: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
+  baseURL: https://cloud.dwavesys.com/sapi/v2
+  properties:
+  - url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
+    type: Documentation
+  - url: openapi/d-wave-hybrid-solvers-openapi.yml
+    type: OpenAPI
+  - url: json-schema/d-wave-cqm-model-schema.json
+    type: JSONSchema
+  - url: capabilities/hybrid-solver-cqm.yaml
+    type: NaftikoCapability
+  - url: capabilities/hybrid-solver-nl.yaml
+    type: NaftikoCapability
+  - url: examples/d-wave-cqm-problem-example.json
+    type: Example
+  description: Quantum-classical hybrid solvers accessible via SAPI. Five hybrid solver families — BQM
+    (binary quadratic), CQM (constrained quadratic, supports equality/inequality constraints), DQM (discrete
+    quadratic), NL (nonlinear, the Industrial Optimization workhorse) — plus the LeapHybridSampler family.
+    Supports industry-scale problems up to ~2 million variables and constraints; subsecond response times for
+    smaller problems. Submitted as standard SAPI problems with `type=cqm|bqm|dqm|nl` and the relevant solver
+    name.
+- aid: d-wave:d-wave-qpu-samplers
+  name: D-Wave QPU Samplers (Advantage / Advantage2)
+  tags:
+  - Quantum Computing
+  - Quantum Annealing
+  - QPU
+  - Advantage
+  - Advantage2
+  - Pegasus
+  - Zephyr
+  humanURL: https://docs.dwavequantum.com/en/quantum_research/index_about.html
+  baseURL: https://cloud.dwavesys.com/sapi/v2
+  properties:
+  - url: https://docs.dwavequantum.com/en/quantum_research/index_about.html
+    type: Documentation
+  - url: openapi/d-wave-qpu-samplers-openapi.yml
+    type: OpenAPI
+  - url: json-schema/d-wave-qpu-properties-schema.json
+    type: JSONSchema
+  - url: capabilities/qpu-sampling.yaml
+    type: NaftikoCapability
+  - url: examples/d-wave-qpu-ising-example.json
+    type: Example
+  description: Direct access to D-Wave quantum annealing QPUs — Advantage (5,000+ qubits, Pegasus topology)
+    and Advantage2 (next-generation, Zephyr topology). Submit Ising or QUBO problems with parameters for
+    annealing schedule, num_reads, chain_strength, reverse annealing, h_gain_schedule, programming thermalization,
+    and readout thermalization. Returned answers contain energies, occurrences, and sample vectors. Use
+    DWaveSampler/EmbeddingComposite from `dwave-system` to embed logical problems onto the physical qubit graph.
+name: D-Wave
+tags:
+- Quantum Computing
+- Quantum Annealing
+- Optimization
+- Hybrid Quantum-Classical
+- Ising
+- QUBO
+- Industrial Optimization
+- Sampling
+- Leap
+- Ocean SDK
+- SAPI
+kind: contract
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+common:
+- type: Portal
+  url: https://www.dwavequantum.com
+- type: Documentation
+  url: https://docs.dwavequantum.com/en/latest/
+- type: Documentation
+  url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
+  name: Industrial Optimization Getting Started
+- type: Documentation
+  url: https://docs.dwavequantum.com/en/quantum_research/index_get_started.html
+  name: Quantum Research Getting Started
+- type: Documentation
+  url: https://docs.dwavequantum.com/en/concepts/index.html
+  name: Concepts and Terminology
+- type: GettingStarted
+  url: https://www.dwavequantum.com/build/getting-started/
+- type: SignUp
+  url: https://www.dwavequantum.com/get-started-with-d-wave/
+- type: SignUp
+  url: https://cloud.dwavesys.com/leap/signup/
+  name: Leap Sign Up
+- type: Sandbox
+  url: https://cloud.dwavesys.com/leap/
+  name: Leap Cloud Service
+- url: https://github.com/dwavesystems
+  type: GitHubOrganization
+- url: https://github.com/dwave-examples
+  type: GitHubOrganization
+  name: D-Wave Examples
+- url: https://github.com/dwavesystems/dwave-ocean-sdk
+  name: Ocean SDK
+  type: SDK
+- url: https://github.com/dwavesystems/dwave-cloud-client
+  name: D-Wave Cloud Client (SAPI REST)
+  type: SDK
+- url: https://github.com/dwavesystems/dwave-system
+  name: dwave-system (sampler composites)
+  type: SDK
+- url: https://github.com/dwavesystems/dimod
+  name: dimod (QUBO/Ising sampler API)
+  type: SDK
+- url: https://github.com/dwavesystems/dwave-hybrid
+  name: dwave-hybrid (decomposition framework)
+  type: SDK
+- url: https://github.com/dwavesystems/dwave-samplers
+  name: dwave-samplers (classical solvers)
+  type: SDK
+- url: https://github.com/dwavesystems/dwave-optimization
+  name: dwave-optimization (nonlinear models)
+  type: SDK
+- url: https://github.com/dwavesystems/dwave-neal
+  name: dwave-neal (simulated annealing)
+  type: SDK
+- url: https://github.com/dwavesystems/dwave-tabu
+  name: dwave-tabu (tabu solver)
+  type: SDK
+- url: https://github.com/dwavesystems/dwave-greedy
+  name: dwave-greedy (steepest-descent)
+  type: SDK
+- url: https://github.com/dwavesystems/dwave-preprocessing
+  name: dwave-preprocessing
+  type: SDK
+- url: https://github.com/dwavesystems/dwave-inspector
+  name: D-Wave Problem Inspector
+  type: Tool
+- url: https://github.com/dwavesystems/minorminer
+  name: minorminer (minor-embedding)
+  type: SDK
+- url: https://github.com/dwavesystems/dwave-graphs
+  name: dwave-graphs (Chimera/Pegasus/Zephyr graphs)
+  type: SDK
+- url: https://github.com/dwavesystems/dwave-gate
+  name: dwave-gate (gate-model simulator)
+  type: SDK
+- url: https://github.com/dwavesystems/penaltymodel
+  name: penaltymodel
+  type: SDK
+- url: https://github.com/dwavesystems/dwave-pytorch-plugin
+  name: D-Wave PyTorch Plugin
+  type: Plugins
+- url: https://github.com/dwavesystems/dwave-scikit-learn-plugin
+  name: D-Wave scikit-learn Plugin
+  type: Plugins
+- url: https://github.com/dwavesystems/dwave-qiskit-plugin
+  name: D-Wave Qiskit Plugin
+  type: Plugins
+- url: https://github.com/dwavesystems/ocean-docker
+  name: Ocean Docker Images
+  type: Tool
+- url: https://github.com/dwavesystems/ocean-devcontainer
+  name: Ocean Devcontainer
+  type: Tool
+- url: https://github.com/dwavesystems/leapide-docs
+  name: Leap IDE Documentation
+  type: Documentation
+- url: https://github.com/dwave-examples
+  name: D-Wave Examples (60+ reference projects)
+  type: CodeExamples
+- url: https://github.com/dwave-examples/template
+  name: D-Wave Example Template
+  type: CodeExamples
+- url: https://github.com/dwave-examples/simple-ocean-programs
+  name: Simple Ocean Programs (intro)
+  type: CodeExamples
+- url: https://github.com/dwave-examples/hybrid-computing-notebook
+  name: Hybrid Computing Notebook
+  type: CodeExamples
+- url: https://github.com/dwave-examples/pegasus-notebook
+  name: Pegasus Notebook
+  type: CodeExamples
+- url: https://github.com/dwave-examples/reverse-annealing-notebook
+  name: Reverse Annealing Notebook
+  type: CodeExamples
+- url: https://github.com/dwave-examples/factoring-notebook
+  name: Factoring Notebook
+  type: CodeExamples
+- url: https://github.com/dwave-examples/feature-selection-notebook
+  name: Feature Selection Notebook
+  type: CodeExamples
+- url: https://pypi.org/project/dwave-ocean-sdk/
+  name: Ocean SDK on PyPI
+  type: SDK
+- url: https://pypi.org/project/dwave-cloud-client/
+  name: dwave-cloud-client on PyPI
+  type: SDK
+- url: https://pypi.org/project/dwave-system/
+  name: dwave-system on PyPI
+  type: SDK
+- url: https://pypi.org/project/dimod/
+  name: dimod on PyPI
+  type: SDK
+- url: https://www.dwavequantum.com/solutions-and-products/cloud-platform/
+  name: Leap Quantum Cloud Service
+  type: Portal
+- url: https://www.dwavequantum.com/solutions-and-products/systems/
+  name: Advantage / Advantage2 Quantum Systems
+  type: Portal
+- url: https://www.dwavequantum.com/solutions-and-products/professional-services/
+  name: D-Wave Launch Program
+  type: Portal
+- url: https://www.dwavequantum.com/learn/blog/
+  type: Blog
+- url: https://www.dwavequantum.com/learn/resource-library/
+  name: Resource Library
+  type: Documentation
+- url: https://www.dwavequantum.com/learn/featured-applications/
+  name: Featured Applications
+  type: Documentation
+- url: https://support.dwavesys.com/hc/en-us/community/topics
+  name: D-Wave Community Forums
+  type: Forum
+- url: https://support.dwavesys.com/hc/en-us
+  name: D-Wave Support Center
+  type: Support
+- url: https://www.dwavequantum.com/contact-us/
+  name: Contact D-Wave
+  type: Support
+- url: https://www.dwavequantum.com/legal/privacy-policy/
+  type: PrivacyPolicy
+- url: https://www.dwavequantum.com/legal/terms/
+  type: TermsOfService
+- url: https://www.dwavequantum.com/legal/patent-notice/
+  name: Patent Notice
+  type: Documentation
+- url: https://investor.dwavequantum.com
+  name: Investor Relations (NYSE QBTS)
+  type: Documentation
+- url: https://www.linkedin.com/company/d-wave-systems
+  type: LinkedIn
+- url: https://x.com/dwavequantum
+  type: Twitter
+- url: https://www.youtube.com/@dwavequantum
+  type: YouTube
+- url: https://plans/d-wave-plans-pricing.yml
+  type: Plans
+- url: https://rate-limits/d-wave-rate-limits.yml
+  type: RateLimits
+- url: https://finops/d-wave-finops.yml
+  type: FinOps
+- url: vocabulary/d-wave-vocabulary.yml
+  type: Vocabulary
+- url: rules/d-wave-rules.yml
+  type: SpectralRules
+- type: Features
+  data:
+  - Advantage2 — next-generation annealing quantum computer with Zephyr topology and improved coherence
+  - Advantage — 5,000+ qubit Pegasus-topology annealing QPU available via Leap cloud
+  - Leap quantum cloud service — real-time access, 99.9% uptime, subsecond response for many workloads
+  - Hybrid solvers — BQM, CQM, DQM, NL families supporting up to ~2 million variables and constraints
+  - NL (Nonlinear) solver — flagship Industrial Optimization solver for general nonlinear formulations
+  - CQM (Constrained Quadratic Model) solver — equality and inequality constraints, mixed integer support
+  - Direct QPU access — Ising / QUBO sampling with annealing schedule, num_reads, reverse annealing, h_gain
+  - Solver API (SAPI) — REST interface for solver discovery, problem submission, status, answer retrieval
+  - Metadata API — region discovery for routing to correct regional SAPI cluster (na-west, eu-central, etc.)
+  - Leap Account API — OAuth-based project listing and SAPI token retrieval
+  - Ocean SDK — Python open-source SDK covering dimod, dwave-system, dwave-cloud-client, hybrid, samplers
+  - dwave-cloud-client — low-level SAPI REST client; submit_problem, list_solvers, regions, account
+  - dimod — shared API and data model for QUBO / Ising / CQM / DQM / NL samplers
+  - dwave-system — DWaveSampler, EmbeddingComposite, LeapHybridSampler family for application code
+  - dwave-hybrid — asynchronous decomposition framework for building hybrid quantum-classical workflows
+  - dwave-samplers / dwave-neal / dwave-tabu / dwave-greedy — classical reference solvers and baselines
+  - dwave-optimization — C++ engine for nonlinear models powering the NL solver workflow
+  - dwave-preprocessing — common BQM preprocessing techniques (roof duality, fix variables, scale, normalize)
+  - dwave-inspector — interactive problem inspector for visualizing embeddings and chains
+  - minorminer — heuristic minor-embedding from logical to physical qubit graph (Pegasus / Zephyr / Chimera)
+  - dwave-graphs — Chimera, Pegasus, and Zephyr graph generators and algorithms
+  - dwave-gate — gate-model quantum circuit construction and state-vector simulator
+  - PyTorch plugin — quantum-classical hybrid ML with PyTorch
+  - scikit-learn plugin — quantum-classical hybrid solving plugged into scikit-learn pipelines
+  - Qiskit plugin — D-Wave Ocean plugin for IBM Qiskit interoperability
+  - Leap IDE — browser-based Jupyter / VS Code environment preconfigured for Ocean development
+  - 60+ reference applications at github.com/dwave-examples (scheduling, routing, packing, ML, finance, science)
+  - Five problem types — ising, qubo, bqm, cqm, dqm, nl — with qp / bq / ref encoding formats
+  - Problem lifecycle — PENDING > IN_PROGRESS > COMPLETED | FAILED | CANCELLED with bulk status polling
+  - Binary-ref answer downloads using SAPI-token auth for large hybrid answers
+  - Versioned vendor media types (`application/vnd.dwave.sapi.*+json;version~=3.0`) for API evolution
+  - D-Wave Launch Program — professional services for quantum onboarding
+  - Publicly traded as NYSE: QBTS
+  sources:
+  - https://www.dwavequantum.com
+  - https://docs.dwavequantum.com/en/latest/
+  - https://github.com/dwavesystems
+  - https://github.com/dwave-examples
+  - https://github.com/dwavesystems/dwave-cloud-client
+  updated: '2026-05-25'
+created: '2026-05-25T00:00:00.000Z'
+modified: '2026-05-25'
+position: Consuming
+description: D-Wave Quantum Inc. (NYSE: QBTS) is the leader in commercial quantum annealing computing and
+  developer of the Advantage and Advantage2 quantum systems. D-Wave's Leap quantum cloud service provides
+  real-time access to D-Wave QPUs and to the Leap hybrid solver family (BQM, CQM, DQM, NL) capable of solving
+  industrial optimization problems with up to ~2 million variables and constraints. The open-source Ocean SDK
+  — dimod, dwave-system, dwave-cloud-client, dwave-hybrid, dwave-samplers, dwave-optimization, minorminer,
+  dwave-inspector, and 40+ companion packages — provides the canonical developer experience, with the
+  underlying Solver API (SAPI) exposed as a versioned REST interface for solver discovery, problem
+  submission, status polling, answer retrieval, and cancellation. Companion APIs include the Metadata API
+  for region discovery and the Leap Account API for OAuth-based project and token management.
+maintainers:
+- FN: Kin Lane
+  email: info@apievangelist.com
+  X: apievangelist
+  url: https://apievangelist.com
+specificationVersion: '0.16'

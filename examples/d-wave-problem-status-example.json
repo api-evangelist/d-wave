@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://cloud.dwavesys.com/sapi/v2/problems/5e7c7a98-3f8d-4d8a-9c2c-1d6e4f9a2b11",
+    "headers": {
+      "X-Auth-Token": "DEV-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "Accept": "application/vnd.dwave.sapi.problem+json;version=3.0.0"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "5e7c7a98-3f8d-4d8a-9c2c-1d6e4f9a2b11",
+      "type": "cqm",
+      "solver": "hybrid_constrained_quadratic_model_version1p",
+      "submitted_on": "2026-05-25T12:34:56.000Z",
+      "status": "IN_PROGRESS",
+      "label": "knapsack-cqm-50items"
+    }
+  }
+}

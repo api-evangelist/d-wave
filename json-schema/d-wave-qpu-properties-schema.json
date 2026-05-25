@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/d-wave/main/json-schema/d-wave-qpu-properties-schema.json",
+  "title": "D-Wave QPU Properties",
+  "description": "Subset of solver.properties for QPU samplers (Advantage, Advantage2).",
+  "type": "object",
+  "properties": {
+    "category": {"type": "string", "const": "qpu"},
+    "chip_id": {"type": "string"},
+    "topology": {
+      "type": "object",
+      "properties": {
+        "type": {"type": "string", "enum": ["pegasus", "zephyr", "chimera"]},
+        "shape": {"type": "array", "items": {"type": "integer"}}
+      }
+    },
+    "num_qubits": {"type": "integer"},
+    "num_active_qubits": {"type": "integer"},
+    "qubits": {"type": "array", "items": {"type": "integer"}},
+    "couplers": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}, "minItems": 2, "maxItems": 2}},
+    "h_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+    "j_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+    "annealing_time_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+    "default_annealing_time": {"type": "number"},
+    "num_reads_range": {"type": "array", "items": {"type": "integer"}, "minItems": 2, "maxItems": 2},
+    "default_readout_thermalization": {"type": "number"},
+    "default_programming_thermalization": {"type": "number"},
+    "anneal_offset_ranges": {"type": "array", "items": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2}},
+    "extended_j_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2}
+  }
+}

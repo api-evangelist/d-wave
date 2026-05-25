@@ -1,0 +1,62 @@
+name: D-Wave SAPI Rate Limits
+description: |
+  D-Wave Solver API (SAPI) request-rate, concurrency, and quota policies. The SAPI does
+  not publish a uniform per-second request quota; instead, the dominant control surface
+  is per-project solver-access-time quota (charge_time / qpu_access_time) and a small
+  set of explicit per-request structural limits documented in the dwave-cloud-client.
+version: '0.1'
+provider: d-wave
+url: https://docs.dwavequantum.com/en/latest/
+policies:
+- id: problem-status-batch
+  scope: per-request
+  resource: GET /problems/
+  limit: 1000
+  unit: problem_ids
+  description: A single batch problem-status request accepts at most 1,000 problem IDs.
+  enforced_by: dwave-cloud-client and SAPI server.
+- id: problem-label-length
+  scope: per-request
+  resource: POST /problems/
+  limit: 1024
+  unit: characters
+  description: Problem label is bounded in length.
+- id: project-quota
+  scope: per-project
+  resource: Solver access time
+  limit: plan-dependent
+  unit: seconds
+  description: |
+    Total monthly QPU + hybrid solver access time, deducted as `answer.timing.charge_time`
+    on each completed job. Free Developer plans have a small monthly quota; commercial
+    Premier and Enterprise plans negotiate higher quotas.
+- id: qpu-num-reads
+  scope: per-request
+  resource: QPU sample
+  limit: 10000
+  unit: reads
+  description: Maximum num_reads per QPU sampling request (typical Advantage / Advantage2 limit).
+- id: qpu-annealing-time
+  scope: per-request
+  resource: QPU sample
+  limit: 2000.0
+  unit: microseconds
+  description: Maximum annealing_time per QPU read (typical solver upper bound).
+- id: hybrid-time-limit
+  scope: per-request
+  resource: Hybrid solver job
+  limit: solver-dependent
+  unit: seconds
+  description: |
+    Hybrid solver `time_limit` is bounded by per-solver minimum_time_limit_s and
+    maximum_time_limit_hrs (e.g. 24 hours for the NL solver).
+- id: regional-routing
+  scope: per-region
+  resource: SAPI endpoint
+  description: |
+    SAPI requests must be sent to the regional endpoint associated with the project; use
+    the Metadata API /regions/ to resolve endpoints.
+sources:
+- https://github.com/dwavesystems/dwave-cloud-client
+- https://docs.dwavequantum.com/en/latest/
+updated: '2026-05-25'

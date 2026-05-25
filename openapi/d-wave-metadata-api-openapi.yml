@@ -1,0 +1,66 @@
+openapi: 3.0.3
+info:
+  title: D-Wave Metadata API
+  version: '1.0'
+  description: |
+    D-Wave Metadata API — discover Leap regions and their per-region SAPI endpoints.
+    Used by Ocean's `dwave-cloud-client` to route problem submissions to the correct
+    regional SAPI cluster.
+  contact:
+    name: D-Wave Quantum Inc.
+    url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+servers:
+- url: https://api.dwavesys.com/metadata/v1
+security:
+- SapiToken: []
+paths:
+  /regions/:
+    get:
+      operationId: listRegions
+      summary: List Regions
+      description: Enumerate Leap regions and their SAPI base URLs.
+      tags: [Regions]
+      responses:
+        '200':
+          description: Region list
+          content:
+            application/vnd.dwave.metadata.regions+json;version=1.0:
+              schema:
+                type: array
+                items: {$ref: '#/components/schemas/Region'}
+  /regions/{code}:
+    get:
+      operationId: getRegion
+      summary: Get Region
+      tags: [Regions]
+      parameters:
+      - {in: path, name: code, required: true, schema: {type: string}, example: na-west-1}
+      responses:
+        '200':
+          description: Region details
+          content:
+            application/vnd.dwave.metadata.region+json;version=1.0:
+              schema: {$ref: '#/components/schemas/Region'}
+components:
+  securitySchemes:
+    SapiToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+  schemas:
+    Region:
+      type: object
+      required: [code, endpoint]
+      properties:
+        code:
+          type: string
+          example: na-west-1
+        name:
+          type: string
+          example: North America (West)
+        endpoint:
+          type: string
+          format: uri
+          example: https://na-west-1.cloud.dwavesys.com/sapi/v2
+        description:
+          type: string

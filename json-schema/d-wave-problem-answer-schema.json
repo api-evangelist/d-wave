@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/d-wave/main/json-schema/d-wave-problem-answer-schema.json",
+  "title": "D-Wave Problem Answer",
+  "description": "Answer payload returned by GET /problems/{id}/answer and embedded in COMPLETED problem statuses.",
+  "type": "object",
+  "properties": {
+    "format": {"type": "string", "enum": ["qp", "bq", "binary-ref"]},
+    "active_variables": {"type": "array", "items": {"type": "integer"}},
+    "energies": {"type": "array", "items": {"type": "number"}},
+    "num_occurrences": {"type": "array", "items": {"type": "integer"}},
+    "solutions": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+    "num_variables": {"type": "integer"},
+    "timing": {
+      "type": "object",
+      "properties": {
+        "qpu_sampling_time": {"type": "number"},
+        "qpu_anneal_time_per_sample": {"type": "number"},
+        "qpu_readout_time_per_sample": {"type": "number"},
+        "qpu_access_time": {"type": "number"},
+        "qpu_programming_time": {"type": "number"},
+        "total_post_processing_time": {"type": "number"},
+        "run_time": {"type": "number"},
+        "charge_time": {"type": "number"}
+      },
+      "additionalProperties": true
+    },
+    "url": {"type": "string", "format": "uri"},
+    "auth_method": {"type": "string", "enum": ["sapi-token"]}
+  }
+}

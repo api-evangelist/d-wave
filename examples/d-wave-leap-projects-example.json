@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://cloud.dwavesys.com/leap/api/account/projects/oauth/",
+    "headers": {
+      "Authorization": "Bearer LEAP-OAUTH-ACCESS-TOKEN"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "id": "prj_01HXYZ123",
+        "name": "Default Project",
+        "code": "DEFAULT",
+        "description": "Default Leap project for the developer account.",
+        "organization": "API Evangelist"
+      },
+      {
+        "id": "prj_01HXYZ987",
+        "name": "Routing Optimization Pilot",
+        "code": "ROUTE-PILOT",
+        "description": "Project containing CQM solver runs for the routing pilot.",
+        "organization": "Naftiko"
+      }
+    ]
+  }
+}

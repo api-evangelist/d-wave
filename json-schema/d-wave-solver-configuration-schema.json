@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/d-wave/main/json-schema/d-wave-solver-configuration-schema.json",
+  "title": "D-Wave Solver Configuration",
+  "description": "SAPI solver definition returned by GET /solvers/remote/ and GET /solvers/remote/{name}.",
+  "type": "object",
+  "required": ["id", "status", "properties"],
+  "properties": {
+    "id": {"type": "string", "examples": ["Advantage_system6.4", "Advantage2_system1.7", "hybrid_nonlinear_program_v1"]},
+    "status": {"type": "string", "enum": ["ONLINE", "OFFLINE", "UNKNOWN"]},
+    "description": {"type": "string"},
+    "avg_load": {"type": "number"},
+    "properties": {
+      "type": "object",
+      "properties": {
+        "category": {"type": "string", "enum": ["qpu", "hybrid", "software"]},
+        "supported_problem_types": {
+          "type": "array",
+          "items": {"type": "string", "enum": ["ising", "qubo", "bqm", "cqm", "dqm", "nl"]}
+        },
+        "num_qubits": {"type": "integer"},
+        "num_active_qubits": {"type": "integer"},
+        "topology": {
+          "type": "object",
+          "properties": {
+            "type": {"type": "string", "enum": ["pegasus", "zephyr", "chimera"]},
+            "shape": {"type": "array", "items": {"type": "integer"}}
+          }
+        },
+        "qubits": {"type": "array", "items": {"type": "integer"}},
+        "couplers": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}, "minItems": 2, "maxItems": 2}},
+        "h_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+        "j_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+        "annealing_time_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+        "default_annealing_time": {"type": "number"},
+        "num_reads_range": {"type": "array", "items": {"type": "integer"}, "minItems": 2, "maxItems": 2},
+        "parameters": {"type": "object", "additionalProperties": true}
+      }
+    }
+  }
+}
