@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "D-Wave Metadata API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Regions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwavesys.com/metadata/v1/regions/"
+          },
+          "docs": "Enumerate Leap regions and their SAPI base URLs."
+        },
+        {
+          "info": {
+            "name": "Get Region",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwavesys.com/metadata/v1/regions/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "na-west-1",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Region"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

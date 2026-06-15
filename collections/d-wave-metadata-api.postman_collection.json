@@ -1,0 +1,222 @@
+{
+  "item": [
+    {
+      "id": "e4285f0b-6072-425e-a289-6b2cfa4de0e7",
+      "name": "Regions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7db33ccc-0d78-4821-a04d-479a42188ee5",
+          "name": "List Regions",
+          "request": {
+            "name": "List Regions",
+            "description": {
+              "content": "Enumerate Leap regions and their SAPI base URLs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "regions",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.metadata.regions+json;version=1.0"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3bec6258-a261-4cee-9112-6e5271d21aa7",
+              "name": "Region list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "regions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.metadata.regions+json;version=1.0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.metadata.regions+json;version=1.0"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"na-west-1\",\n    \"endpoint\": \"https://na-west-1.cloud.dwavesys.com/sapi/v2\",\n    \"name\": \"North America (West)\",\n    \"description\": \"string\"\n  },\n  {\n    \"code\": \"na-west-1\",\n    \"endpoint\": \"https://na-west-1.cloud.dwavesys.com/sapi/v2\",\n    \"name\": \"North America (West)\",\n    \"description\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c500a5e-89f1-4c07-b10d-33e109e16bb4",
+          "name": "Get Region",
+          "request": {
+            "name": "Get Region",
+            "description": {},
+            "url": {
+              "path": [
+                "regions",
+                ":code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.metadata.region+json;version=1.0"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3132287a-f989-465a-8393-52deab58c817",
+              "name": "Region details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "regions",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.metadata.region+json;version=1.0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.metadata.region+json;version=1.0"
+                }
+              ],
+              "body": "{\n  \"code\": \"na-west-1\",\n  \"endpoint\": \"https://na-west-1.cloud.dwavesys.com/sapi/v2\",\n  \"name\": \"North America (West)\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dwavesys.com/metadata/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5124aba4-bd86-4713-862a-b243649f7ac5",
+    "name": "D-Wave Metadata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "D-Wave Metadata API — discover Leap regions and their per-region SAPI endpoints.\nUsed by Ocean's `dwave-cloud-client` to route problem submissions to the correct\nregional SAPI cluster.\n\n\nContact Support:\n Name: D-Wave Quantum Inc.",
+      "type": "text/plain"
+    }
+  }
+}

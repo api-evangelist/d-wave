@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "D-Wave Solver API (SAPI) - Solvers",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Solvers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Solvers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/sapi/v2/solvers/remote/",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Solver filter expression (e.g. `none,+properties.topology.type`)."
+              }
+            ]
+          },
+          "docs": "List remote solvers available to the authenticated project, with optional filter."
+        },
+        {
+          "info": {
+            "name": "Get Solver",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/sapi/v2/solvers/remote/:solver_name",
+            "params": [
+              {
+                "name": "solver_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve full configuration and properties for a single solver."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,150 @@
+{
+  "item": [
+    {
+      "id": "0aa32d4c-1c99-4b35-9cfa-41181c145b15",
+      "name": "QPU",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ec6c5397-5b98-4472-a4f6-3fab577b2c0d",
+          "name": "Submit QPU Problem",
+          "request": {
+            "name": "Submit QPU Problem",
+            "description": {
+              "content": "Submit an Ising or QUBO problem to a D-Wave QPU sampler.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "problems",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"solver\": \"<string>\",\n  \"type\": \"<string>\",\n  \"data\": {\n    \"format\": \"<string>\",\n    \"lin\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"quad\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"offset\": \"<number>\"\n  },\n  \"params\": {\n    \"num_reads\": \"<integer>\",\n    \"annealing_time\": \"<number>\",\n    \"chain_strength\": \"<number>\",\n    \"auto_scale\": \"<boolean>\",\n    \"anneal_schedule\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"h_gain_schedule\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"programming_thermalization\": \"<number>\",\n    \"readout_thermalization\": \"<number>\",\n    \"flux_biases\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"reverse_anneal_schedule\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"initial_state\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"answer_mode\": \"<string>\"\n  },\n  \"label\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "66faa3b3-de76-4344-ba32-9720545eb98e",
+              "name": "QPU problem status (with answer if returned within time limit)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "problems",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"solver\": \"Advantage_system6.4\",\n  \"type\": \"<string>\",\n  \"data\": {\n    \"format\": \"<string>\",\n    \"lin\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"quad\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"offset\": \"<number>\"\n  },\n  \"params\": {\n    \"num_reads\": \"<integer>\",\n    \"annealing_time\": \"<number>\",\n    \"chain_strength\": \"<number>\",\n    \"auto_scale\": \"<boolean>\",\n    \"anneal_schedule\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"h_gain_schedule\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"programming_thermalization\": \"<number>\",\n    \"readout_thermalization\": \"<number>\",\n    \"flux_biases\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"reverse_anneal_schedule\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"initial_state\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"answer_mode\": \"<string>\"\n  },\n  \"label\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"string\",\n  \"solver\": \"string\",\n  \"status\": \"CANCELLED\",\n  \"submitted_on\": \"1962-04-04T07:48:09.765Z\",\n  \"solved_on\": \"1976-07-19T05:18:08.402Z\",\n  \"answer\": {\n    \"format\": \"qp\",\n    \"active_variables\": [\n      4602,\n      6445\n    ],\n    \"energies\": [\n      7675.645207866275,\n      5511.012528613359\n    ],\n    \"num_occurrences\": [\n      6177,\n      7474\n    ],\n    \"solutions\": [\n      [\n        1,\n        1\n      ],\n      [\n        1,\n        1\n      ]\n    ],\n    \"timing\": {\n      \"qpu_sampling_time\": 1090.495313280454,\n      \"qpu_anneal_time_per_sample\": 9841.601418797569,\n      \"qpu_readout_time_per_sample\": 2891.641642422613,\n      \"qpu_access_time\": 1514.7733252605078,\n      \"qpu_programming_time\": 4217.514849362047,\n      \"total_post_processing_time\": 4150.132624228751\n    },\n    \"num_variables\": 6352\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cloud.dwavesys.com/sapi/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "beb4db68-fa56-42d2-b8fc-a9b958519d41",
+    "name": "D-Wave QPU Samplers (Advantage / Advantage2)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Direct access to D-Wave quantum annealing QPUs (Advantage with Pegasus topology and\nAdvantage2 with Zephyr topology) through the SAPI Problems endpoint with\n`type=ising|qubo`. Problems are submitted with QPU-specific annealing parameters and\nreturn Ising/QUBO answers with energies, occurrences, and sample vectors.\n\n\nContact Support:\n Name: D-Wave Quantum Inc.",
+      "type": "text/plain"
+    }
+  }
+}

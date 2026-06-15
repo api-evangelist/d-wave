@@ -1,0 +1,885 @@
+{
+  "item": [
+    {
+      "id": "ef766268-addf-4fd4-bb57-f0c4880be20b",
+      "name": "Problems",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "91a37be9-cb7e-4a28-bf8f-6bedc33980df",
+          "name": "List Problems",
+          "request": {
+            "name": "List Problems",
+            "description": {
+              "content": "Retrieve a filtered list of submitted problems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "problems",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "label",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_results",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "solver",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "timeout",
+                  "value": "<integer>",
+                  "description": "Long-poll timeout in seconds while problems remain non-terminal."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5766fd5-ced0-4c77-9235-2ba66aa9ad89",
+              "name": "Problem statuses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "problems",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_results",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "solver",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"type\": \"qubo\",\n    \"solver\": \"string\",\n    \"submitted_on\": \"1954-09-13T11:56:46.617Z\",\n    \"status\": \"<string>\",\n    \"label\": \"string\",\n    \"solved_on\": \"1998-01-11T02:17:29.337Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"type\": \"ising\",\n    \"solver\": \"string\",\n    \"submitted_on\": \"1952-07-01T11:06:24.090Z\",\n    \"status\": \"<string>\",\n    \"label\": \"string\",\n    \"solved_on\": \"1993-01-22T19:21:56.256Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7544530f-d0b7-4935-a971-2422a3c68326",
+          "name": "Submit Problem",
+          "request": {
+            "name": "Submit Problem",
+            "description": {
+              "content": "Blocking single-problem submit. Returns final status and answer if the problem\ncompletes within the (undisclosed) server time limit; otherwise returns the latest\nstatus. Compression supported on QPU problem payloads.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "problems",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"solver\": \"<string>\",\n  \"type\": \"<string>\",\n  \"data\": {\n    \"format\": \"<string>\",\n    \"lin\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"quad\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"offset\": \"<number>\",\n    \"data\": \"<string>\"\n  },\n  \"params\": {\n    \"key_0\": 7735.496759200345\n  },\n  \"label\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8c2f8402-1cab-4ba0-ac27-70c568422c5f",
+              "name": "Problem status (with answer if available) or submit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "problems",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"solver\": \"hybrid_nonlinear_program_v1\",\n  \"type\": \"<string>\",\n  \"data\": {\n    \"format\": \"<string>\",\n    \"lin\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"quad\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"offset\": \"<number>\",\n    \"data\": \"<string>\"\n  },\n  \"params\": {\n    \"key_0\": 4072.1865612730026,\n    \"key_1\": 2921\n  },\n  \"label\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"<string>\",\n  \"solver\": \"string\",\n  \"submitted_on\": \"1959-01-27T04:57:27.137Z\",\n  \"status\": \"<string>\",\n  \"label\": \"string\",\n  \"solved_on\": \"2006-06-29T20:20:08.134Z\",\n  \"answer\": {\n    \"format\": \"<string>\",\n    \"active_variables\": [\n      3246,\n      8919\n    ],\n    \"energies\": [\n      5573.52591361368,\n      2798.643579036787\n    ],\n    \"num_occurrences\": [\n      2799,\n      3011\n    ],\n    \"solutions\": [\n      [\n        3632,\n        6043\n      ],\n      [\n        2544,\n        9907\n      ]\n    ],\n    \"timing\": {\n      \"key_0\": 8768.946893969503\n    },\n    \"num_variables\": 859\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf132c6a-6307-4d3e-851b-833d1c514bba",
+          "name": "Cancel Problems",
+          "request": {
+            "name": "Cancel Problems",
+            "description": {
+              "content": "Cancel a list of problems by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "problems",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "863d2280-81d2-4506-a242-099bba156d38",
+              "name": "Per-problem cancel results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "problems",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"type\": \"<string>\",\n    \"solver\": \"string\",\n    \"submitted_on\": \"1977-05-03T17:54:42.350Z\",\n    \"status\": \"<string>\",\n    \"label\": \"string\",\n    \"solved_on\": \"1974-05-14T14:13:37.031Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"type\": \"<string>\",\n    \"solver\": \"string\",\n    \"submitted_on\": \"1958-10-31T12:55:39.679Z\",\n    \"status\": \"<string>\",\n    \"label\": \"string\",\n    \"solved_on\": \"1969-01-18T12:06:12.129Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a0bb1c2-3108-4d20-873e-b77bc4de1769",
+          "name": "Get Problem",
+          "request": {
+            "name": "Get Problem",
+            "description": {
+              "content": "Retrieve problem short status and the answer if it is available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "problems",
+                ":problem_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "timeout",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "problem_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.sapi.problem+json;version=3.0.0"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1e13740-38b5-42b8-a4e9-0a40d49cad48",
+              "name": "Status with optional answer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "problems",
+                    ":problem_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "problem_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.sapi.problem+json;version=3.0.0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.sapi.problem+json;version=3.0.0"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"<string>\",\n  \"solver\": \"string\",\n  \"submitted_on\": \"1963-10-02T06:39:53.428Z\",\n  \"status\": \"<string>\",\n  \"label\": \"string\",\n  \"solved_on\": \"1987-02-13T23:20:39.733Z\",\n  \"answer\": {\n    \"format\": \"<string>\",\n    \"active_variables\": [\n      4976,\n      6399\n    ],\n    \"energies\": [\n      7290.147948901301,\n      3745.211840663518\n    ],\n    \"num_occurrences\": [\n      8562,\n      5358\n    ],\n    \"solutions\": [\n      [\n        3926,\n        3095\n      ],\n      [\n        8030,\n        6307\n      ]\n    ],\n    \"timing\": {\n      \"key_0\": \"string\"\n    },\n    \"num_variables\": 7403\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70535e1f-0f81-4bb0-981d-02b04651d0f8",
+          "name": "Cancel Problem",
+          "request": {
+            "name": "Cancel Problem",
+            "description": {
+              "content": "Initiate cancel for a single problem.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "problems",
+                ":problem_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "problem_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.sapi.problem+json;version=3.0.0"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec178455-2eff-49af-8b13-53b3f22549e4",
+              "name": "Cancel result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "problems",
+                    ":problem_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "problem_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.sapi.problem+json;version=3.0.0"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.sapi.problem+json;version=3.0.0"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"<string>\",\n  \"solver\": \"string\",\n  \"submitted_on\": \"1959-05-21T22:01:59.557Z\",\n  \"status\": \"<string>\",\n  \"label\": \"string\",\n  \"solved_on\": \"1996-04-14T16:46:39.329Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e0316a6-56ac-4b6b-81fe-ada85155fa51",
+          "name": "Get Problem Info",
+          "request": {
+            "name": "Get Problem Info",
+            "description": {
+              "content": "Retrieve complete problem info (submitted job + metadata).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "problems",
+                ":problem_id",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "problem_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.sapi.problem-data+json;version=3.0.0"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fcba10b2-b449-4cae-9a7b-f5bcee756589",
+              "name": "Problem info",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "problems",
+                    ":problem_id",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "problem_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.sapi.problem-data+json;version=3.0.0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.sapi.problem-data+json;version=3.0.0"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"data\": {\n    \"format\": \"<string>\",\n    \"lin\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"quad\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"offset\": \"<number>\",\n    \"data\": \"<string>\"\n  },\n  \"params\": {\n    \"key_0\": 3898,\n    \"key_1\": 3003.73926665345\n  },\n  \"solver\": \"string\",\n  \"label\": \"string\",\n  \"submitted_on\": \"1967-09-17T10:50:10.776Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5461e710-28b0-4cfc-9c7f-7937b10ff237",
+          "name": "Get Problem Answer",
+          "request": {
+            "name": "Get Problem Answer",
+            "description": {
+              "content": "Retrieve the answer for a completed problem.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "problems",
+                ":problem_id",
+                "answer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "problem_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.sapi.problem-answer+json;version=3.0.0"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13d8eedb-3e08-400d-b2da-1642ae33a861",
+              "name": "Problem answer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "problems",
+                    ":problem_id",
+                    "answer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "problem_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.sapi.problem-answer+json;version=3.0.0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.sapi.problem-answer+json;version=3.0.0"
+                }
+              ],
+              "body": "{\n  \"format\": \"<string>\",\n  \"active_variables\": [\n    6846,\n    6704\n  ],\n  \"energies\": [\n    9148.609935896162,\n    5883.0252759711\n  ],\n  \"num_occurrences\": [\n    2628,\n    7943\n  ],\n  \"solutions\": [\n    [\n      2639,\n      2517\n    ],\n    [\n      5594,\n      6789\n    ]\n  ],\n  \"timing\": {\n    \"key_0\": 724,\n    \"key_1\": 9468,\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"num_variables\": 7153\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5518a0f5-335e-4328-8502-643412ccec1a",
+          "name": "Get Problem Messages",
+          "request": {
+            "name": "Get Problem Messages",
+            "description": {
+              "content": "Retrieve diagnostic / informational messages emitted while solving a problem.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "problems",
+                ":problem_id",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "problem_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.sapi.problem-message+json;version=3.0.0"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b475341-ffb5-487c-997c-043c29f429e1",
+              "name": "Message list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "problems",
+                    ":problem_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "problem_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.sapi.problem-message+json;version=3.0.0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.sapi.problem-message+json;version=3.0.0"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": 7130.498616390544,\n    \"key_1\": 9697,\n    \"key_2\": false,\n    \"key_3\": 9528.734389236115\n  },\n  {\n    \"key_0\": \"string\",\n    \"key_1\": 3827\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cloud.dwavesys.com/sapi/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "690c50a4-2b60-47a2-8032-999dc228a18b",
+    "name": "D-Wave Solver API (SAPI) - Problems",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "D-Wave Solver API (SAPI) — Problems resource. Submit, monitor, retrieve, and cancel\nquantum and hybrid problem jobs. Supports ising, qubo, bqm, cqm, dqm, and nl problem\ntypes with qp / bq / ref encoding formats.\n\n\nContact Support:\n Name: D-Wave Quantum Inc.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "D-Wave Solver API (SAPI) - Problems",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Problems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Problems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/sapi/v2/problems/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "label",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "max_results",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "solver",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "timeout",
+                "value": "",
+                "type": "query",
+                "description": "Long-poll timeout in seconds while problems remain non-terminal."
+              }
+            ]
+          },
+          "docs": "Retrieve a filtered list of submitted problems."
+        },
+        {
+          "info": {
+            "name": "Submit Problem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.dwavesys.com/sapi/v2/problems/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Blocking single-problem submit. Returns final status and answer if the problem\ncompletes within the (undisclosed) server time limit; otherwise returns the latest\nstatus. Compression supported on QPU problem payloads.\n"
+        },
+        {
+          "info": {
+            "name": "Cancel Problems",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.dwavesys.com/sapi/v2/problems/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel a list of problems by ID."
+        },
+        {
+          "info": {
+            "name": "Get Problem",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/sapi/v2/problems/:problem_id",
+            "params": [
+              {
+                "name": "problem_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "timeout",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve problem short status and the answer if it is available."
+        },
+        {
+          "info": {
+            "name": "Cancel Problem",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.dwavesys.com/sapi/v2/problems/:problem_id",
+            "params": [
+              {
+                "name": "problem_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Initiate cancel for a single problem."
+        },
+        {
+          "info": {
+            "name": "Get Problem Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/sapi/v2/problems/:problem_id/info",
+            "params": [
+              {
+                "name": "problem_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve complete problem info (submitted job + metadata)."
+        },
+        {
+          "info": {
+            "name": "Get Problem Answer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/sapi/v2/problems/:problem_id/answer",
+            "params": [
+              {
+                "name": "problem_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the answer for a completed problem."
+        },
+        {
+          "info": {
+            "name": "Get Problem Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/sapi/v2/problems/:problem_id/messages",
+            "params": [
+              {
+                "name": "problem_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve diagnostic / informational messages emitted while solving a problem."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

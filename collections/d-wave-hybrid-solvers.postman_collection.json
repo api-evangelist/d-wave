@@ -1,0 +1,150 @@
+{
+  "item": [
+    {
+      "id": "59ab61c4-51a7-4195-a2d9-5827e27e12fa",
+      "name": "Hybrid",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ca987444-5e9f-4dbf-984d-d09921cc5319",
+          "name": "Submit Hybrid Problem",
+          "request": {
+            "name": "Submit Hybrid Problem",
+            "description": {
+              "content": "Submit a Constrained Quadratic Model (CQM), Binary Quadratic Model (BQM), Discrete\nQuadratic Model (DQM), or Nonlinear (NL) problem to a Leap hybrid solver. Supports\nindustry-scale problems up to ~2 million variables/constraints. Solver name must\nmatch an active hybrid solver discoverable via `/solvers/remote/`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "problems",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"solver\": \"<string>\",\n  \"type\": \"<string>\",\n  \"data\": {\n    \"format\": \"<string>\",\n    \"data\": \"<string>\"\n  },\n  \"params\": {\n    \"time_limit\": \"<number>\",\n    \"label\": \"<string>\"\n  },\n  \"label\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c0ec7f5-c4df-47f9-85d6-ddb8375adc5e",
+              "name": "Hybrid problem status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "problems",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"solver\": \"<string>\",\n  \"type\": \"<string>\",\n  \"data\": {\n    \"format\": \"<string>\",\n    \"data\": \"<string>\"\n  },\n  \"params\": {\n    \"time_limit\": \"<number>\",\n    \"label\": \"<string>\"\n  },\n  \"label\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"string\",\n  \"solver\": \"string\",\n  \"status\": \"CANCELLED\",\n  \"submitted_on\": \"1968-11-26T13:10:09.882Z\",\n  \"solved_on\": \"1994-11-18T23:22:56.605Z\",\n  \"answer\": {\n    \"format\": \"binary-ref\",\n    \"data\": \"string\",\n    \"url\": \"http://akjLH.emzqZ4ywCu0SdPJv4lkoHyJLHNzA7L1klMUwy6k\",\n    \"auth_method\": \"sapi-token\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cloud.dwavesys.com/sapi/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "df8a2bd2-450c-4119-88f6-79de8d36896f",
+    "name": "D-Wave Leap Hybrid Solvers",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Leap Hybrid Solvers — quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted\nvia the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching\nhybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid\nsolver request/response shapes.\n\n\nContact Support:\n Name: D-Wave Quantum Inc.",
+      "type": "text/plain"
+    }
+  }
+}

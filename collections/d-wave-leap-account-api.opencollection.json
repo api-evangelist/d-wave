@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "D-Wave Leap Account API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://cloud.dwavesys.com/leap/oauth/authorize",
+      "accessTokenUrl": "https://cloud.dwavesys.com/leap/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Active Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/leap/api/account/active_project/oauth/"
+          },
+          "docs": "Retrieve the authenticated user's active Leap project as selected in the Leap dashboard."
+        },
+        {
+          "info": {
+            "name": "List Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/leap/api/account/projects/oauth/"
+          },
+          "docs": "Retrieve the list of Leap projects accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Get Project SAPI Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/leap/api/account/token/oauth/",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a SAPI token for a given Leap project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
