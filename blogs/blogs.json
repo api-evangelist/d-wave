@@ -3,12 +3,12 @@
   "feeds": [
     {
       "source": "https://www.dwavequantum.com/learn/blog/",
-      "feed_url": "https://www.dwavequantum.com/learn/blog/",
-      "title": "",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
+      "method": "agent-scrape"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:35:55Z",
+  "agent_pulled": "2026-06-27"
 }

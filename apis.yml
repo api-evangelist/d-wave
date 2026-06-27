@@ -20,7 +20,7 @@ apis:
       - url: json-ld/d-wave-context.jsonld
         type: JSONLD
       - url: examples/d-wave-list-solvers-example.json
-        type: Example
+        type: Examples
     description: >-
       List, inspect, and discover D-Wave solvers available to the authenticated project, including quantum annealing QPU
       samplers (Advantage, Advantage2) and Leap hybrid samplers (BQM, CQM, DQM, NL). Solvers carry capability metadata
@@ -46,9 +46,9 @@ apis:
       - url: json-schema/d-wave-problem-answer-schema.json
         type: JSONSchema
       - url: examples/d-wave-submit-problem-example.json
-        type: Example
+        type: Examples
       - url: examples/d-wave-problem-status-example.json
-        type: Example
+        type: Examples
     description: >-
       Submit, monitor, retrieve, and cancel quantum and hybrid problem jobs. Supports the canonical problem types ising,
       qubo, bqm, cqm, dqm, and nl with three encoding formats (qp, bq, ref). Problems flow through PENDING > IN_PROGRESS
@@ -69,7 +69,7 @@ apis:
       - url: openapi/d-wave-metadata-api-openapi.yml
         type: OpenAPI
       - url: examples/d-wave-list-regions-example.json
-        type: Example
+        type: Examples
     description: >-
       Discover D-Wave Leap regions and their per-region SAPI endpoints. The Metadata API is the canonical region
       resolver — clients call `/regions/` to enumerate available regions (e.g. `na-west-1`, `eu-central-1`) and
@@ -92,7 +92,7 @@ apis:
       - url: openapi/d-wave-leap-account-api-openapi.yml
         type: OpenAPI
       - url: examples/d-wave-leap-projects-example.json
-        type: Example
+        type: Examples
     description: >-
       Manage Leap account projects and per-project SAPI tokens via OAuth. Endpoints include
       `account/active_project/oauth/` (retrieve user's active project), `account/projects/oauth/` (list all accessible
@@ -119,7 +119,7 @@ apis:
       - url: json-schema/d-wave-cqm-model-schema.json
         type: JSONSchema
       - url: examples/d-wave-cqm-problem-example.json
-        type: Example
+        type: Examples
     description: >-
       Quantum-classical hybrid solvers accessible via SAPI. Five hybrid solver families — BQM (binary quadratic), CQM
       (constrained quadratic, supports equality/inequality constraints), DQM (discrete quadratic), NL (nonlinear, the
@@ -146,7 +146,7 @@ apis:
       - url: json-schema/d-wave-qpu-properties-schema.json
         type: JSONSchema
       - url: examples/d-wave-qpu-ising-example.json
-        type: Example
+        type: Examples
     description: >-
       Direct access to D-Wave quantum annealing QPUs — Advantage (5,000+ qubits, Pegasus topology) and Advantage2
       (next-generation, Zephyr topology). Submit Ising or QUBO problems with parameters for annealing schedule,
@@ -185,9 +185,9 @@ common:
     name: Concepts and Terminology
   - type: GettingStarted
     url: https://www.dwavequantum.com/build/getting-started/
-  - type: SignUp
+  - type: Signup
     url: https://www.dwavequantum.com/get-started-with-d-wave/
-  - type: SignUp
+  - type: Signup
     url: https://cloud.dwavesys.com/leap/signup/
     name: Leap Sign Up
   - type: Sandbox
@@ -200,52 +200,52 @@ common:
     name: D-Wave Examples
   - url: https://github.com/dwavesystems/dwave-ocean-sdk
     name: Ocean SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/dwave-cloud-client
     name: D-Wave Cloud Client (SAPI REST)
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/dwave-system
     name: dwave-system (sampler composites)
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/dimod
     name: dimod (QUBO/Ising sampler API)
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/dwave-hybrid
     name: dwave-hybrid (decomposition framework)
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/dwave-samplers
     name: dwave-samplers (classical solvers)
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/dwave-optimization
     name: dwave-optimization (nonlinear models)
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/dwave-neal
     name: dwave-neal (simulated annealing)
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/dwave-tabu
     name: dwave-tabu (tabu solver)
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/dwave-greedy
     name: dwave-greedy (steepest-descent)
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/dwave-preprocessing
     name: dwave-preprocessing
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/dwave-inspector
     name: D-Wave Problem Inspector
-    type: Tool
+    type: Tools
   - url: https://github.com/dwavesystems/minorminer
     name: minorminer (minor-embedding)
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/dwave-graphs
     name: dwave-graphs (Chimera/Pegasus/Zephyr graphs)
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/dwave-gate
     name: dwave-gate (gate-model simulator)
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/penaltymodel
     name: penaltymodel
-    type: SDK
+    type: SDKs
   - url: https://github.com/dwavesystems/dwave-pytorch-plugin
     name: D-Wave PyTorch Plugin
     type: Plugins
@@ -257,10 +257,10 @@ common:
     type: Plugins
   - url: https://github.com/dwavesystems/ocean-docker
     name: Ocean Docker Images
-    type: Tool
+    type: Tools
   - url: https://github.com/dwavesystems/ocean-devcontainer
     name: Ocean Devcontainer
-    type: Tool
+    type: Tools
   - url: https://github.com/dwavesystems/leapide-docs
     name: Leap IDE Documentation
     type: Documentation
@@ -290,16 +290,16 @@ common:
     type: CodeExamples
   - url: https://pypi.org/project/dwave-ocean-sdk/
     name: Ocean SDK on PyPI
-    type: SDK
+    type: SDKs
   - url: https://pypi.org/project/dwave-cloud-client/
     name: dwave-cloud-client on PyPI
-    type: SDK
+    type: SDKs
   - url: https://pypi.org/project/dwave-system/
     name: dwave-system on PyPI
-    type: SDK
+    type: SDKs
   - url: https://pypi.org/project/dimod/
     name: dimod on PyPI
-    type: SDK
+    type: SDKs
   - url: https://www.dwavequantum.com/solutions-and-products/cloud-platform/
     name: Leap Quantum Cloud Service
     type: Portal
@@ -319,7 +319,7 @@ common:
     type: Documentation
   - url: https://support.dwavesys.com/hc/en-us/community/topics
     name: D-Wave Community Forums
-    type: Forum
+    type: Forums
   - url: https://support.dwavesys.com/hc/en-us
     name: D-Wave Support Center
     type: Support
