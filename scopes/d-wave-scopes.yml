@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/d-wave-leap-account-api-openapi.yml
+schemes:
+- name: LeapOAuth
+  source: openapi/d-wave-leap-account-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://cloud.dwavesys.com/leap/oauth/authorize
+    tokenUrl: https://cloud.dwavesys.com/leap/oauth/token
+scopes:
+- scope: account
+  description: Read account, projects, and tokens
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/d-wave-leap-account-api-openapi.yml
