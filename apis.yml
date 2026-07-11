@@ -170,6 +170,10 @@ kind: contract
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+  - type: DomainSecurity
+    url: security/d-wave-domain-security.yml
+  - type: Authentication
+    url: authentication/d-wave-authentication.yml
   - type: OAuthScopes
     url: scopes/d-wave-scopes.yml
   - type: Portal

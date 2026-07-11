@@ -1,0 +1,33 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/d-wave-hybrid-solvers-openapi.yml, openapi/d-wave-leap-account-api-openapi.yml,
+  openapi/d-wave-metadata-api-openapi.yml, openapi/d-wave-problems-api-openapi.yml, openapi/d-wave-qpu-samplers-openapi.yml,
+  openapi/d-wave-solvers-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - oauth2
+  api_key_in:
+  - header
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: SapiToken
+  type: apiKey
+  in: header
+  parameter: X-Auth-Token
+  sources:
+  - openapi/d-wave-hybrid-solvers-openapi.yml
+  - openapi/d-wave-metadata-api-openapi.yml
+  - openapi/d-wave-problems-api-openapi.yml
+  - openapi/d-wave-qpu-samplers-openapi.yml
+  - openapi/d-wave-solvers-api-openapi.yml
+- name: LeapOAuth
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://cloud.dwavesys.com/leap/oauth/authorize
+    tokenUrl: https://cloud.dwavesys.com/leap/oauth/token
+    scopes: 1
+  sources:
+  - openapi/d-wave-leap-account-api-openapi.yml
