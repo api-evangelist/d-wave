@@ -1,0 +1,215 @@
+openapi: 3.0.3
+info:
+  title: D-Wave Leap Hybrid Solvers Account QPU API
+  version: '3.0'
+  description: 'Leap Hybrid Solvers — quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted
+
+    via the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching
+
+    hybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid
+
+    solver request/response shapes.
+
+    '
+  contact:
+    name: D-Wave Quantum Inc.
+    url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
+servers:
+- url: https://cloud.dwavesys.com/sapi/v2
+security:
+- SapiToken: []
+tags:
+- name: QPU
+paths:
+  /problems/:
+    post:
+      operationId: submitQpuProblem
+      summary: Submit QPU Problem
+      description: Submit an Ising or QUBO problem to a D-Wave QPU sampler.
+      tags:
+      - QPU
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QpuProblemJob'
+      responses:
+        '200':
+          description: QPU problem status (with answer if returned within time limit)
+          content:
+            application/vnd.dwave.sapi.problems+json;version=3.0.0:
+              schema:
+                $ref: '#/components/schemas/QpuProblemStatus'
+components:
+  schemas:
+    QpuProblemStatus:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        solver:
+          type: string
+        status:
+          type: string
+          enum:
+          - PENDING
+          - IN_PROGRESS
+          - COMPLETED
+          - FAILED
+          - CANCELLED
+        submitted_on:
+          type: string
+          format: date-time
+        solved_on:
+          type: string
+          format: date-time
+        answer:
+          $ref: '#/components/schemas/QpuAnswer'
+    QpuParams:
+      type: object
+      properties:
+        num_reads:
+          type: integer
+          minimum: 1
+          maximum: 10000
+        annealing_time:
+          type: number
+          description: Microseconds (e.g. 1-2000).
+        chain_strength:
+          type: number
+        auto_scale:
+          type: boolean
+        anneal_schedule:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+            minItems: 2
+            maxItems: 2
+          description: Reverse / pause / forward anneal schedule as (time, s) pairs.
+        h_gain_schedule:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+            minItems: 2
+            maxItems: 2
+        programming_thermalization:
+          type: number
+        readout_thermalization:
+          type: number
+        flux_biases:
+          type: array
+          items:
+            type: number
+        reverse_anneal_schedule:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+        initial_state:
+          type: array
+          items:
+            type: integer
+            enum:
+            - -1
+            - 1
+        answer_mode:
+          type: string
+          enum:
+          - raw
+          - histogram
+    QpuAnswer:
+      type: object
+      properties:
+        format:
+          type: string
+          enum:
+          - qp
+        active_variables:
+          type: array
+          items:
+            type: integer
+        energies:
+          type: array
+          items:
+            type: number
+        num_occurrences:
+          type: array
+          items:
+            type: integer
+        solutions:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              enum:
+              - -1
+              - 1
+        timing:
+          type: object
+          properties:
+            qpu_sampling_time:
+              type: number
+            qpu_anneal_time_per_sample:
+              type: number
+            qpu_readout_time_per_sample:
+              type: number
+            qpu_access_time:
+              type: number
+            qpu_programming_time:
+              type: number
+            total_post_processing_time:
+              type: number
+        num_variables:
+          type: integer
+    QpuProblemJob:
+      type: object
+      required:
+      - solver
+      - type
+      - data
+      properties:
+        solver:
+          type: string
+          example: Advantage_system6.4
+        type:
+          type: string
+          enum:
+          - ising
+          - qubo
+        data:
+          type: object
+          properties:
+            format:
+              type: string
+              enum:
+              - qp
+            lin:
+              type: array
+              items:
+                type: number
+              description: Linear biases on active qubits.
+            quad:
+              type: array
+              items:
+                type: number
+              description: Quadratic couplings between coupled qubits.
+            offset:
+              type: number
+        params:
+          $ref: '#/components/schemas/QpuParams'
+        label:
+          type: string
+  securitySchemes:
+    SapiToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token

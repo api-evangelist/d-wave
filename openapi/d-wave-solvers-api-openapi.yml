@@ -1,31 +1,33 @@
 openapi: 3.0.3
 info:
-  title: D-Wave Solver API (SAPI) - Solvers
+  title: D-Wave Leap Hybrid Account Solvers API
   version: '3.0'
-  description: |
-    D-Wave Solver API (SAPI) — Solvers resource. Discover quantum (QPU) and hybrid solvers
-    available to the authenticated project on the Leap quantum cloud service. Each solver
-    advertises its capability metadata (problem types, parameters, properties, status).
+  description: 'Leap Hybrid Solvers — quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted
+
+    via the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching
+
+    hybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid
+
+    solver request/response shapes.
+
+    '
   contact:
     name: D-Wave Quantum Inc.
-    url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
-  license:
-    name: Proprietary
-    url: https://www.dwavequantum.com/legal/terms/
+    url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
 servers:
 - url: https://cloud.dwavesys.com/sapi/v2
-  description: Default Leap SAPI endpoint (use Metadata API for region routing)
-- url: https://eu-central-1.cloud.dwavesys.com/sapi/v2
-  description: EU Central regional SAPI endpoint
 security:
 - SapiToken: []
+tags:
+- name: Solvers
 paths:
   /solvers/remote/:
     get:
       operationId: listSolvers
       summary: List Solvers
       description: List remote solvers available to the authenticated project, with optional filter.
-      tags: [Solvers]
+      tags:
+      - Solvers
       parameters:
       - in: query
         name: filter
@@ -48,15 +50,18 @@ paths:
       operationId: getSolver
       summary: Get Solver
       description: Retrieve full configuration and properties for a single solver.
-      tags: [Solvers]
+      tags:
+      - Solvers
       parameters:
       - in: path
         name: solver_name
         required: true
-        schema: {type: string}
+        schema:
+          type: string
       - in: query
         name: filter
-        schema: {type: string}
+        schema:
+          type: string
       responses:
         '200':
           description: Solver configuration
@@ -67,23 +72,28 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  securitySchemes:
-    SapiToken:
-      type: apiKey
-      in: header
-      name: X-Auth-Token
-      description: Project-scoped SAPI token retrieved via the Leap Account API.
+  responses:
+    NotFound:
+      description: Solver not found or not accessible to project
+    Unauthorized:
+      description: Missing or invalid SAPI token
   schemas:
     SolverConfiguration:
       type: object
-      required: [id, status, properties]
+      required:
+      - id
+      - status
+      - properties
       properties:
         id:
           type: string
           example: Advantage_system6.4
         status:
           type: string
-          enum: [ONLINE, OFFLINE, UNKNOWN]
+          enum:
+          - ONLINE
+          - OFFLINE
+          - UNKNOWN
         description:
           type: string
         avg_load:
@@ -94,24 +104,41 @@ components:
           properties:
             category:
               type: string
-              enum: [qpu, hybrid, software]
+              enum:
+              - qpu
+              - hybrid
+              - software
             supported_problem_types:
               type: array
               items:
                 type: string
-                enum: [ising, qubo, bqm, cqm, dqm, nl]
+                enum:
+                - ising
+                - qubo
+                - bqm
+                - cqm
+                - dqm
+                - nl
             num_qubits:
               type: integer
             topology:
               type: object
               properties:
-                type: {type: string, enum: [pegasus, zephyr, chimera]}
-                shape: {type: array, items: {type: integer}}
+                type:
+                  type: string
+                  enum:
+                  - pegasus
+                  - zephyr
+                  - chimera
+                shape:
+                  type: array
+                  items:
+                    type: integer
             parameters:
               type: object
               additionalProperties: true
-  responses:
-    Unauthorized:
-      description: Missing or invalid SAPI token
-    NotFound:
-      description: Solver not found or not accessible to project
+  securitySchemes:
+    SapiToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token

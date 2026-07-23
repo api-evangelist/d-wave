@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: D-Wave Leap Hybrid Solvers Account API
+  version: '3.0'
+  description: 'Leap Hybrid Solvers — quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted
+
+    via the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching
+
+    hybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid
+
+    solver request/response shapes.
+
+    '
+  contact:
+    name: D-Wave Quantum Inc.
+    url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
+servers:
+- url: https://cloud.dwavesys.com/sapi/v2
+security:
+- SapiToken: []
+tags:
+- name: Account
+paths:
+  /account/active_project/oauth/:
+    get:
+      operationId: getActiveProject
+      summary: Get Active Project
+      description: Retrieve the authenticated user's active Leap project as selected in the Leap dashboard.
+      tags:
+      - Account
+      responses:
+        '200':
+          description: Active project
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeapProject'
+  /account/projects/oauth/:
+    get:
+      operationId: listProjects
+      summary: List Projects
+      description: Retrieve the list of Leap projects accessible to the authenticated user.
+      tags:
+      - Account
+      responses:
+        '200':
+          description: Project list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LeapProject'
+  /account/token/oauth/:
+    get:
+      operationId: getProjectToken
+      summary: Get Project SAPI Token
+      description: Retrieve a SAPI token for a given Leap project.
+      tags:
+      - Account
+      parameters:
+      - in: query
+        name: project_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: SAPI token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeapProjectToken'
+components:
+  schemas:
+    LeapProjectToken:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Opaque SAPI token to send as `X-Auth-Token` against the Solver API.
+        project_id:
+          type: string
+    LeapProject:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        description:
+          type: string
+        organization:
+          type: string
+  securitySchemes:
+    SapiToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token

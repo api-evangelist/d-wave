@@ -1,39 +1,60 @@
 openapi: 3.0.3
 info:
-  title: D-Wave Solver API (SAPI) - Problems
+  title: D-Wave Leap Hybrid Solvers Account Problems API
   version: '3.0'
-  description: |
-    D-Wave Solver API (SAPI) — Problems resource. Submit, monitor, retrieve, and cancel
-    quantum and hybrid problem jobs. Supports ising, qubo, bqm, cqm, dqm, and nl problem
-    types with qp / bq / ref encoding formats.
+  description: 'Leap Hybrid Solvers — quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted
+
+    via the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching
+
+    hybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid
+
+    solver request/response shapes.
+
+    '
   contact:
     name: D-Wave Quantum Inc.
-    url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
-  license:
-    name: Proprietary
-    url: https://www.dwavequantum.com/legal/terms/
+    url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
 servers:
 - url: https://cloud.dwavesys.com/sapi/v2
-  description: Default Leap SAPI endpoint
 security:
 - SapiToken: []
+tags:
+- name: Problems
 paths:
   /problems/:
     get:
       operationId: listProblems
       summary: List Problems
       description: Retrieve a filtered list of submitted problems.
-      tags: [Problems]
+      tags:
+      - Problems
       parameters:
-      - {in: query, name: id, schema: {type: string}}
-      - {in: query, name: label, schema: {type: string}}
-      - {in: query, name: max_results, schema: {type: integer, maximum: 1000}}
-      - {in: query, name: status, schema: {$ref: '#/components/schemas/ProblemStatusEnum'}}
-      - {in: query, name: solver, schema: {type: string}}
+      - in: query
+        name: id
+        schema:
+          type: string
+      - in: query
+        name: label
+        schema:
+          type: string
+      - in: query
+        name: max_results
+        schema:
+          type: integer
+          maximum: 1000
+      - in: query
+        name: status
+        schema:
+          $ref: '#/components/schemas/ProblemStatusEnum'
+      - in: query
+        name: solver
+        schema:
+          type: string
       - in: query
         name: timeout
         description: Long-poll timeout in seconds while problems remain non-terminal.
-        schema: {type: integer}
+        schema:
+          type: integer
       responses:
         '200':
           description: Problem statuses
@@ -41,20 +62,26 @@ paths:
             application/vnd.dwave.sapi.problems+json;version=3.0.0:
               schema:
                 type: array
-                items: {$ref: '#/components/schemas/ProblemStatus'}
+                items:
+                  $ref: '#/components/schemas/ProblemStatus'
     post:
       operationId: submitProblem
       summary: Submit Problem
-      description: |
-        Blocking single-problem submit. Returns final status and answer if the problem
+      description: 'Blocking single-problem submit. Returns final status and answer if the problem
+
         completes within the (undisclosed) server time limit; otherwise returns the latest
+
         status. Compression supported on QPU problem payloads.
-      tags: [Problems]
+
+        '
+      tags:
+      - Problems
       requestBody:
         required: true
         content:
           application/json:
-            schema: {$ref: '#/components/schemas/ProblemJob'}
+            schema:
+              $ref: '#/components/schemas/ProblemJob'
       responses:
         '200':
           description: Problem status (with answer if available) or submit error
@@ -62,20 +89,22 @@ paths:
             application/vnd.dwave.sapi.problems+json;version=3.0.0:
               schema:
                 oneOf:
-                - {$ref: '#/components/schemas/ProblemStatusWithAnswer'}
-                - {$ref: '#/components/schemas/ProblemSubmitError'}
+                - $ref: '#/components/schemas/ProblemStatusWithAnswer'
+                - $ref: '#/components/schemas/ProblemSubmitError'
     delete:
       operationId: cancelProblems
       summary: Cancel Problems
       description: Cancel a list of problems by ID.
-      tags: [Problems]
+      tags:
+      - Problems
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: array
-              items: {type: string}
+              items:
+                type: string
       responses:
         '200':
           description: Per-problem cancel results
@@ -83,71 +112,104 @@ paths:
             application/vnd.dwave.sapi.problems+json;version=3.0.0:
               schema:
                 type: array
-                items: {$ref: '#/components/schemas/ProblemStatus'}
+                items:
+                  $ref: '#/components/schemas/ProblemStatus'
   /problems/{problem_id}:
     get:
       operationId: getProblem
       summary: Get Problem
       description: Retrieve problem short status and the answer if it is available.
-      tags: [Problems]
+      tags:
+      - Problems
       parameters:
-      - {in: path, name: problem_id, required: true, schema: {type: string}}
-      - {in: query, name: timeout, schema: {type: integer}}
+      - in: path
+        name: problem_id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: timeout
+        schema:
+          type: integer
       responses:
         '200':
           description: Status with optional answer
           content:
             application/vnd.dwave.sapi.problem+json;version=3.0.0:
-              schema: {$ref: '#/components/schemas/ProblemStatusWithAnswer'}
+              schema:
+                $ref: '#/components/schemas/ProblemStatusWithAnswer'
     delete:
       operationId: cancelProblem
       summary: Cancel Problem
       description: Initiate cancel for a single problem.
-      tags: [Problems]
+      tags:
+      - Problems
       parameters:
-      - {in: path, name: problem_id, required: true, schema: {type: string}}
+      - in: path
+        name: problem_id
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Cancel result
           content:
             application/vnd.dwave.sapi.problem+json;version=3.0.0:
-              schema: {$ref: '#/components/schemas/ProblemStatus'}
+              schema:
+                $ref: '#/components/schemas/ProblemStatus'
   /problems/{problem_id}/info:
     get:
       operationId: getProblemInfo
       summary: Get Problem Info
       description: Retrieve complete problem info (submitted job + metadata).
-      tags: [Problems]
+      tags:
+      - Problems
       parameters:
-      - {in: path, name: problem_id, required: true, schema: {type: string}}
+      - in: path
+        name: problem_id
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Problem info
           content:
             application/vnd.dwave.sapi.problem-data+json;version=3.0.0:
-              schema: {$ref: '#/components/schemas/ProblemInfo'}
+              schema:
+                $ref: '#/components/schemas/ProblemInfo'
   /problems/{problem_id}/answer:
     get:
       operationId: getProblemAnswer
       summary: Get Problem Answer
       description: Retrieve the answer for a completed problem.
-      tags: [Problems]
+      tags:
+      - Problems
       parameters:
-      - {in: path, name: problem_id, required: true, schema: {type: string}}
+      - in: path
+        name: problem_id
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Problem answer
           content:
             application/vnd.dwave.sapi.problem-answer+json;version=3.0.0:
-              schema: {$ref: '#/components/schemas/ProblemAnswer'}
+              schema:
+                $ref: '#/components/schemas/ProblemAnswer'
   /problems/{problem_id}/messages:
     get:
       operationId: getProblemMessages
       summary: Get Problem Messages
       description: Retrieve diagnostic / informational messages emitted while solving a problem.
-      tags: [Problems]
+      tags:
+      - Problems
       parameters:
-      - {in: path, name: problem_id, required: true, schema: {type: string}}
+      - in: path
+        name: problem_id
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Message list
@@ -155,35 +217,59 @@ paths:
             application/vnd.dwave.sapi.problem-message+json;version=3.0.0:
               schema:
                 type: array
-                items: {type: object, additionalProperties: true}
+                items:
+                  type: object
+                  additionalProperties: true
 components:
-  securitySchemes:
-    SapiToken:
-      type: apiKey
-      in: header
-      name: X-Auth-Token
   schemas:
-    ProblemStatusEnum:
-      type: string
-      enum: [PENDING, IN_PROGRESS, COMPLETED, FAILED, CANCELLED]
-    ProblemTypeEnum:
-      type: string
-      enum: [ising, qubo, bqm, cqm, dqm, nl]
+    ProblemStatusWithAnswer:
+      allOf:
+      - $ref: '#/components/schemas/ProblemStatus'
+      - type: object
+        properties:
+          answer:
+            $ref: '#/components/schemas/ProblemAnswer'
     EncodingFormatEnum:
       type: string
-      enum: [qp, bq, ref]
+      enum:
+      - qp
+      - bq
+      - ref
+    ProblemStatus:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          $ref: '#/components/schemas/ProblemTypeEnum'
+        solver:
+          type: string
+        submitted_on:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/ProblemStatusEnum'
+        label:
+          type: string
+        solved_on:
+          type: string
+          format: date-time
     ProblemJob:
       type: object
-      required: [solver, type, data]
+      required:
+      - solver
+      - type
+      - data
       properties:
         solver:
           type: string
           example: hybrid_nonlinear_program_v1
-        type: {$ref: '#/components/schemas/ProblemTypeEnum'}
+        type:
+          $ref: '#/components/schemas/ProblemTypeEnum'
         data:
           oneOf:
-          - {$ref: '#/components/schemas/ProblemData'}
-          - {$ref: '#/components/schemas/ProblemDataRef'}
+          - $ref: '#/components/schemas/ProblemData'
+          - $ref: '#/components/schemas/ProblemDataRef'
         params:
           type: object
           additionalProperties: true
@@ -193,60 +279,113 @@ components:
           maxLength: 1024
     ProblemData:
       type: object
-      required: [format]
+      required:
+      - format
       properties:
-        format: {$ref: '#/components/schemas/EncodingFormatEnum'}
-        lin: {type: array, items: {type: number}}
-        quad: {type: array, items: {type: number}}
-        offset: {type: number}
-        data: {type: string, description: Base64-encoded binary payload (bq / nl formats).}
-    ProblemDataRef:
-      type: object
-      required: [format, url, auth_method]
-      properties:
-        format: {type: string, enum: [ref]}
-        url: {type: string, format: uri}
-        auth_method: {type: string, enum: [sapi-token]}
-    ProblemStatus:
-      type: object
-      properties:
-        id: {type: string}
-        type: {$ref: '#/components/schemas/ProblemTypeEnum'}
-        solver: {type: string}
-        submitted_on: {type: string, format: date-time}
-        status: {$ref: '#/components/schemas/ProblemStatusEnum'}
-        label: {type: string}
-        solved_on: {type: string, format: date-time}
-    ProblemStatusWithAnswer:
-      allOf:
-      - {$ref: '#/components/schemas/ProblemStatus'}
-      - type: object
-        properties:
-          answer: {$ref: '#/components/schemas/ProblemAnswer'}
+        format:
+          $ref: '#/components/schemas/EncodingFormatEnum'
+        lin:
+          type: array
+          items:
+            type: number
+        quad:
+          type: array
+          items:
+            type: number
+        offset:
+          type: number
+        data:
+          type: string
+          description: Base64-encoded binary payload (bq / nl formats).
+    ProblemTypeEnum:
+      type: string
+      enum:
+      - ising
+      - qubo
+      - bqm
+      - cqm
+      - dqm
+      - nl
     ProblemInfo:
       type: object
       properties:
-        id: {type: string}
-        data: {$ref: '#/components/schemas/ProblemData'}
-        params: {type: object, additionalProperties: true}
-        solver: {type: string}
-        label: {type: string}
-        submitted_on: {type: string, format: date-time}
+        id:
+          type: string
+        data:
+          $ref: '#/components/schemas/ProblemData'
+        params:
+          type: object
+          additionalProperties: true
+        solver:
+          type: string
+        label:
+          type: string
+        submitted_on:
+          type: string
+          format: date-time
+    ProblemStatusEnum:
+      type: string
+      enum:
+      - PENDING
+      - IN_PROGRESS
+      - COMPLETED
+      - FAILED
+      - CANCELLED
     ProblemAnswer:
       type: object
       properties:
-        format: {$ref: '#/components/schemas/EncodingFormatEnum'}
-        active_variables: {type: array, items: {type: integer}}
-        energies: {type: array, items: {type: number}}
-        num_occurrences: {type: array, items: {type: integer}}
-        solutions: {type: array, items: {type: array, items: {type: integer}}}
-        timing: {type: object, additionalProperties: true}
-        num_variables: {type: integer}
+        format:
+          $ref: '#/components/schemas/EncodingFormatEnum'
+        active_variables:
+          type: array
+          items:
+            type: integer
+        energies:
+          type: array
+          items:
+            type: number
+        num_occurrences:
+          type: array
+          items:
+            type: integer
+        solutions:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+        timing:
+          type: object
+          additionalProperties: true
+        num_variables:
+          type: integer
+    ProblemDataRef:
+      type: object
+      required:
+      - format
+      - url
+      - auth_method
+      properties:
+        format:
+          type: string
+          enum:
+          - ref
+        url:
+          type: string
+          format: uri
+        auth_method:
+          type: string
+          enum:
+          - sapi-token
     ProblemSubmitError:
       type: object
       properties:
-        error_code: {type: integer}
-        error_msg: {type: string}
-  responses:
-    Unauthorized:
-      description: Missing or invalid SAPI token
+        error_code:
+          type: integer
+        error_msg:
+          type: string
+  securitySchemes:
+    SapiToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token

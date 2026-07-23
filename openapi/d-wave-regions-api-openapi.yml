@@ -1,25 +1,33 @@
 openapi: 3.0.3
 info:
-  title: D-Wave Metadata API
-  version: '1.0'
-  description: |
-    D-Wave Metadata API — discover Leap regions and their per-region SAPI endpoints.
-    Used by Ocean's `dwave-cloud-client` to route problem submissions to the correct
-    regional SAPI cluster.
+  title: D-Wave Leap Hybrid Solvers Account Regions API
+  version: '3.0'
+  description: 'Leap Hybrid Solvers — quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted
+
+    via the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching
+
+    hybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid
+
+    solver request/response shapes.
+
+    '
   contact:
     name: D-Wave Quantum Inc.
-    url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+    url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
 servers:
-- url: https://api.dwavesys.com/metadata/v1
+- url: https://cloud.dwavesys.com/sapi/v2
 security:
 - SapiToken: []
+tags:
+- name: Regions
 paths:
   /regions/:
     get:
       operationId: listRegions
       summary: List Regions
       description: Enumerate Leap regions and their SAPI base URLs.
-      tags: [Regions]
+      tags:
+      - Regions
       responses:
         '200':
           description: Region list
@@ -27,30 +35,35 @@ paths:
             application/vnd.dwave.metadata.regions+json;version=1.0:
               schema:
                 type: array
-                items: {$ref: '#/components/schemas/Region'}
+                items:
+                  $ref: '#/components/schemas/Region'
   /regions/{code}:
     get:
       operationId: getRegion
       summary: Get Region
-      tags: [Regions]
+      tags:
+      - Regions
       parameters:
-      - {in: path, name: code, required: true, schema: {type: string}, example: na-west-1}
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+        example: na-west-1
       responses:
         '200':
           description: Region details
           content:
             application/vnd.dwave.metadata.region+json;version=1.0:
-              schema: {$ref: '#/components/schemas/Region'}
+              schema:
+                $ref: '#/components/schemas/Region'
 components:
-  securitySchemes:
-    SapiToken:
-      type: apiKey
-      in: header
-      name: X-Auth-Token
   schemas:
     Region:
       type: object
-      required: [code, endpoint]
+      required:
+      - code
+      - endpoint
       properties:
         code:
           type: string
@@ -64,3 +77,8 @@ components:
           example: https://na-west-1.cloud.dwavesys.com/sapi/v2
         description:
           type: string
+  securitySchemes:
+    SapiToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token

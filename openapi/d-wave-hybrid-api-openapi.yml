@@ -1,0 +1,142 @@
+openapi: 3.0.3
+info:
+  title: D-Wave Leap Solvers Account Hybrid API
+  version: '3.0'
+  description: 'Leap Hybrid Solvers — quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted
+
+    via the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching
+
+    hybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid
+
+    solver request/response shapes.
+
+    '
+  contact:
+    name: D-Wave Quantum Inc.
+    url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
+servers:
+- url: https://cloud.dwavesys.com/sapi/v2
+security:
+- SapiToken: []
+tags:
+- name: Hybrid
+paths:
+  /problems/:
+    post:
+      operationId: submitHybridProblem
+      summary: Submit Hybrid Problem
+      description: 'Submit a Constrained Quadratic Model (CQM), Binary Quadratic Model (BQM), Discrete
+
+        Quadratic Model (DQM), or Nonlinear (NL) problem to a Leap hybrid solver. Supports
+
+        industry-scale problems up to ~2 million variables/constraints. Solver name must
+
+        match an active hybrid solver discoverable via `/solvers/remote/`.
+
+        '
+      tags:
+      - Hybrid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HybridProblemJob'
+      responses:
+        '200':
+          description: Hybrid problem status
+          content:
+            application/vnd.dwave.sapi.problems+json;version=3.0.0:
+              schema:
+                $ref: '#/components/schemas/HybridProblemStatus'
+components:
+  schemas:
+    HybridProblemStatus:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        solver:
+          type: string
+        status:
+          type: string
+          enum:
+          - PENDING
+          - IN_PROGRESS
+          - COMPLETED
+          - FAILED
+          - CANCELLED
+        submitted_on:
+          type: string
+          format: date-time
+        solved_on:
+          type: string
+          format: date-time
+        answer:
+          type: object
+          properties:
+            format:
+              type: string
+              enum:
+              - bq
+              - binary-ref
+            data:
+              type: string
+              description: Serialized dimod SampleSet (bq) or binary-ref pointer.
+            url:
+              type: string
+              format: uri
+              description: Present when format=binary-ref.
+            auth_method:
+              type: string
+              enum:
+              - sapi-token
+    HybridProblemJob:
+      type: object
+      required:
+      - solver
+      - type
+      - data
+      properties:
+        solver:
+          type: string
+          enum:
+          - hybrid_nonlinear_program_v1
+          - hybrid_constrained_quadratic_model_version1p
+          - hybrid_binary_quadratic_model_version2p
+          - hybrid_discrete_quadratic_model_version1p
+        type:
+          type: string
+          enum:
+          - bqm
+          - cqm
+          - dqm
+          - nl
+        data:
+          type: object
+          properties:
+            format:
+              type: string
+              enum:
+              - bq
+              - ref
+            data:
+              type: string
+              description: Base64-encoded serialized dimod model.
+        params:
+          type: object
+          properties:
+            time_limit:
+              type: number
+              description: Solver wall-clock time limit in seconds.
+            label:
+              type: string
+        label:
+          type: string
+  securitySchemes:
+    SapiToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
