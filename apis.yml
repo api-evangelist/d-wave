@@ -1,158 +1,181 @@
 aid: d-wave
 url: https://raw.githubusercontent.com/api-evangelist/d-wave/refs/heads/main/apis.yml
 apis:
-  - aid: d-wave:d-wave-solver-api
-    name: D-Wave Solver API (SAPI) - Solvers
-    tags:
-      - Quantum Computing
-      - Quantum Annealing
-      - Solvers
-      - Optimization
-    humanURL: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
-    baseURL: https://cloud.dwavesys.com/sapi/v2
-    properties:
-      - url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
-        type: Documentation
-      - url: openapi/d-wave-solvers-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/d-wave-solver-configuration-schema.json
-        type: JSONSchema
-      - url: json-ld/d-wave-context.jsonld
-        type: JSONLD
-      - url: examples/d-wave-list-solvers-example.json
-        type: Examples
-    description: >-
-      List, inspect, and discover D-Wave solvers available to the authenticated project, including quantum annealing QPU
-      samplers (Advantage, Advantage2) and Leap hybrid samplers (BQM, CQM, DQM, NL). Solvers carry capability metadata
-      (qubit count, topology, supported problem types, parameters, properties) so clients can match a workload to the
-      correct sampler. Versioned via vendor media type `application/vnd.dwave.sapi.solver-definition+json;version~=3.0`.
-  - aid: d-wave:d-wave-problems-api
-    name: D-Wave Solver API (SAPI) - Problems
-    tags:
-      - Quantum Computing
-      - Quantum Annealing
-      - Problems
-      - Sampling
-      - Optimization
-    humanURL: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
-    baseURL: https://cloud.dwavesys.com/sapi/v2
-    properties:
-      - url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
-        type: Documentation
-      - url: openapi/d-wave-problems-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/d-wave-problem-schema.json
-        type: JSONSchema
-      - url: json-schema/d-wave-problem-answer-schema.json
-        type: JSONSchema
-      - url: examples/d-wave-submit-problem-example.json
-        type: Examples
-      - url: examples/d-wave-problem-status-example.json
-        type: Examples
-    description: >-
-      Submit, monitor, retrieve, and cancel quantum and hybrid problem jobs. Supports the canonical problem types ising,
-      qubo, bqm, cqm, dqm, and nl with three encoding formats (qp, bq, ref). Problems flow through PENDING > IN_PROGRESS
-      > COMPLETED | FAILED | CANCELLED terminal states. Endpoints support blocking submit (single problem), batch async
-      submit (multi-problem), short status polling, full-info retrieval, answer download (inline or binary-ref via
-      SAPI-token), problem messages, and single/bulk cancel. Up to 1,000 problem IDs per status batch.
-  - aid: d-wave:d-wave-metadata-api
-    name: D-Wave Metadata API - Regions
-    tags:
-      - Quantum Computing
-      - Metadata
-      - Regions
-    humanURL: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
-    baseURL: https://api.dwavesys.com/metadata/v1
-    properties:
-      - url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
-        type: Documentation
-      - url: openapi/d-wave-metadata-api-openapi.yml
-        type: OpenAPI
-      - url: examples/d-wave-list-regions-example.json
-        type: Examples
-    description: >-
-      Discover D-Wave Leap regions and their per-region SAPI endpoints. The Metadata API is the canonical region
-      resolver — clients call `/regions/` to enumerate available regions (e.g. `na-west-1`, `eu-central-1`) and
-      `/regions/{code}` to retrieve a single region's SAPI base URL. Used by the Ocean `dwave-cloud-client` to route
-      problem submissions to the correct regional SAPI cluster. Versioned via
-      `application/vnd.dwave.metadata.regions+json;version~=1.0`.
-  - aid: d-wave:d-wave-leap-account-api
-    name: D-Wave Leap Account API
-    tags:
-      - Quantum Computing
-      - Leap
-      - Account
-      - Projects
-      - OAuth
-    humanURL: https://docs.dwavequantum.com/en/latest/leap_sapi/leap_api.html
-    baseURL: https://cloud.dwavesys.com/leap/api
-    properties:
-      - url: https://docs.dwavequantum.com/en/latest/leap_sapi/leap_api.html
-        type: Documentation
-      - url: openapi/d-wave-leap-account-api-openapi.yml
-        type: OpenAPI
-      - url: examples/d-wave-leap-projects-example.json
-        type: Examples
-    description: >-
-      Manage Leap account projects and per-project SAPI tokens via OAuth. Endpoints include
-      `account/active_project/oauth/` (retrieve user's active project), `account/projects/oauth/` (list all accessible
-      projects), and `account/token/oauth/?project_id=...` (retrieve a project SAPI token for use against the Solver
-      API). Backs the Ocean SDK's interactive Leap authorization flow, allowing developers to onboard, switch projects,
-      and rotate SAPI tokens without leaving their development environment.
-  - aid: d-wave:d-wave-hybrid-solvers
-    name: D-Wave Leap Hybrid Solvers
-    tags:
-      - Quantum Computing
-      - Hybrid
-      - Optimization
-      - BQM
-      - CQM
-      - DQM
-      - Nonlinear
-    humanURL: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
-    baseURL: https://cloud.dwavesys.com/sapi/v2
-    properties:
-      - url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
-        type: Documentation
-      - url: openapi/d-wave-hybrid-solvers-openapi.yml
-        type: OpenAPI
-      - url: json-schema/d-wave-cqm-model-schema.json
-        type: JSONSchema
-      - url: examples/d-wave-cqm-problem-example.json
-        type: Examples
-    description: >-
-      Quantum-classical hybrid solvers accessible via SAPI. Five hybrid solver families — BQM (binary quadratic), CQM
-      (constrained quadratic, supports equality/inequality constraints), DQM (discrete quadratic), NL (nonlinear, the
-      Industrial Optimization workhorse) — plus the LeapHybridSampler family. Supports industry-scale problems up to ~2
-      million variables and constraints; subsecond response times for smaller problems. Submitted as standard SAPI
-      problems with `type=cqm|bqm|dqm|nl` and the relevant solver name.
-  - aid: d-wave:d-wave-qpu-samplers
-    name: D-Wave QPU Samplers (Advantage / Advantage2)
-    tags:
-      - Quantum Computing
-      - Quantum Annealing
-      - QPU
-      - Advantage
-      - Advantage2
-      - Pegasus
-      - Zephyr
-    humanURL: https://docs.dwavequantum.com/en/quantum_research/index_about.html
-    baseURL: https://cloud.dwavesys.com/sapi/v2
-    properties:
-      - url: https://docs.dwavequantum.com/en/quantum_research/index_about.html
-        type: Documentation
-      - url: openapi/d-wave-qpu-samplers-openapi.yml
-        type: OpenAPI
-      - url: json-schema/d-wave-qpu-properties-schema.json
-        type: JSONSchema
-      - url: examples/d-wave-qpu-ising-example.json
-        type: Examples
-    description: >-
-      Direct access to D-Wave quantum annealing QPUs — Advantage (5,000+ qubits, Pegasus topology) and Advantage2
-      (next-generation, Zephyr topology). Submit Ising or QUBO problems with parameters for annealing schedule,
-      num_reads, chain_strength, reverse annealing, h_gain_schedule, programming thermalization, and readout
-      thermalization. Returned answers contain energies, occurrences, and sample vectors. Use
-      DWaveSampler/EmbeddingComposite from `dwave-system` to embed logical problems onto the physical qubit graph.
+- aid: d-wave:d-wave-solver-api
+  name: D-Wave Solver API (SAPI) - Solvers
+  tags:
+  - Quantum Computing
+  - Quantum Annealing
+  - Solvers
+  - Optimization
+  humanURL: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+  baseURL: https://cloud.dwavesys.com/sapi/v2
+  properties:
+  - url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+    type: Documentation
+  - url: openapi/d-wave-solvers-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/d-wave-solver-configuration-schema.json
+    type: JSONSchema
+  - url: json-ld/d-wave-context.jsonld
+    type: JSONLD
+  - url: examples/d-wave-list-solvers-example.json
+    type: Examples
+  description: >-
+    List, inspect, and discover D-Wave solvers available to the authenticated project, including quantum
+    annealing QPU samplers (Advantage, Advantage2) and Leap hybrid samplers (BQM, CQM, DQM, NL). Solvers
+    carry capability metadata (qubit count, topology, supported problem types, parameters, properties)
+    so clients can match a workload to the correct sampler. Versioned via vendor media type `application/vnd.dwave.sapi.solver-definition+json;version~=3.0`.
+- aid: d-wave:d-wave-problems-api
+  name: D-Wave Solver API (SAPI) - Problems
+  tags:
+  - Quantum Computing
+  - Quantum Annealing
+  - Problems
+  - Sampling
+  - Optimization
+  humanURL: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+  baseURL: https://cloud.dwavesys.com/sapi/v2
+  properties:
+  - url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+    type: Documentation
+  - url: openapi/d-wave-problems-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/d-wave-problem-schema.json
+    type: JSONSchema
+  - url: json-schema/d-wave-problem-answer-schema.json
+    type: JSONSchema
+  - url: examples/d-wave-submit-problem-example.json
+    type: Examples
+  - url: examples/d-wave-problem-status-example.json
+    type: Examples
+  description: >-
+    Submit, monitor, retrieve, and cancel quantum and hybrid problem jobs. Supports the canonical problem
+    types ising, qubo, bqm, cqm, dqm, and nl with three encoding formats (qp, bq, ref). Problems flow
+    through PENDING > IN_PROGRESS > COMPLETED | FAILED | CANCELLED terminal states. Endpoints support
+    blocking submit (single problem), batch async submit (multi-problem), short status polling, full-info
+    retrieval, answer download (inline or binary-ref via SAPI-token), problem messages, and single/bulk
+    cancel. Up to 1,000 problem IDs per status batch.
+- aid: d-wave:d-wave-account-api
+  name: D-Wave Account API
+  description: The Account API from D-Wave — 3 operation(s) for account.
+  humanURL: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+  baseURL: https://cloud.dwavesys.com/sapi/v2
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/d-wave-account-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+  - type: Examples
+    url: examples/d-wave-list-regions-example.json
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/latest/leap_sapi/leap_api.html
+  - type: Examples
+    url: examples/d-wave-leap-projects-example.json
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
+  - type: JSONSchema
+    url: json-schema/d-wave-cqm-model-schema.json
+  - type: Examples
+    url: examples/d-wave-cqm-problem-example.json
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/quantum_research/index_about.html
+  - type: JSONSchema
+    url: json-schema/d-wave-qpu-properties-schema.json
+  - type: Examples
+    url: examples/d-wave-qpu-ising-example.json
+- aid: d-wave:d-wave-hybrid-api
+  name: D-Wave Hybrid API
+  description: The Hybrid API from D-Wave — 1 operation(s) for hybrid.
+  humanURL: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+  baseURL: https://cloud.dwavesys.com/sapi/v2
+  tags:
+  - Hybrid
+  properties:
+  - type: OpenAPI
+    url: openapi/d-wave-hybrid-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+  - type: Examples
+    url: examples/d-wave-list-regions-example.json
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/latest/leap_sapi/leap_api.html
+  - type: Examples
+    url: examples/d-wave-leap-projects-example.json
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
+  - type: JSONSchema
+    url: json-schema/d-wave-cqm-model-schema.json
+  - type: Examples
+    url: examples/d-wave-cqm-problem-example.json
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/quantum_research/index_about.html
+  - type: JSONSchema
+    url: json-schema/d-wave-qpu-properties-schema.json
+  - type: Examples
+    url: examples/d-wave-qpu-ising-example.json
+- aid: d-wave:d-wave-qpu-api
+  name: D-Wave QPU API
+  description: The QPU API from D-Wave — 1 operation(s) for qpu.
+  humanURL: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+  baseURL: https://cloud.dwavesys.com/sapi/v2
+  tags:
+  - QPU
+  properties:
+  - type: OpenAPI
+    url: openapi/d-wave-qpu-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+  - type: Examples
+    url: examples/d-wave-list-regions-example.json
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/latest/leap_sapi/leap_api.html
+  - type: Examples
+    url: examples/d-wave-leap-projects-example.json
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
+  - type: JSONSchema
+    url: json-schema/d-wave-cqm-model-schema.json
+  - type: Examples
+    url: examples/d-wave-cqm-problem-example.json
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/quantum_research/index_about.html
+  - type: JSONSchema
+    url: json-schema/d-wave-qpu-properties-schema.json
+  - type: Examples
+    url: examples/d-wave-qpu-ising-example.json
+- aid: d-wave:d-wave-regions-api
+  name: D-Wave Regions API
+  description: The Regions API from D-Wave — 2 operation(s) for regions.
+  humanURL: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+  baseURL: https://cloud.dwavesys.com/sapi/v2
+  tags:
+  - Regions
+  properties:
+  - type: OpenAPI
+    url: openapi/d-wave-regions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
+  - type: Examples
+    url: examples/d-wave-list-regions-example.json
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/latest/leap_sapi/leap_api.html
+  - type: Examples
+    url: examples/d-wave-leap-projects-example.json
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
+  - type: JSONSchema
+    url: json-schema/d-wave-cqm-model-schema.json
+  - type: Examples
+    url: examples/d-wave-cqm-problem-example.json
+  - type: Documentation
+    url: https://docs.dwavequantum.com/en/quantum_research/index_about.html
+  - type: JSONSchema
+    url: json-schema/d-wave-qpu-properties-schema.json
+  - type: Examples
+    url: examples/d-wave-qpu-ising-example.json
 name: D-Wave
 tags:
   - Quantum Computing
@@ -167,9 +190,24 @@ tags:
   - Ocean SDK
   - SAPI
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Freemium (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/d-wave.png
 access: 3rd-Party
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/d-wave/overview
   - type: AgenticAccess
     url: agentic-access/d-wave-agentic-access.yml
   - type: DomainSecurity
