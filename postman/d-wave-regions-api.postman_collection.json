@@ -1,0 +1,220 @@
+{
+  "info": {
+    "_postman_id": "3c46c855-cd04-424e-a704-ed9647b8520e",
+    "name": "D-Wave Leap Hybrid Solvers Account Regions API",
+    "description": "Leap Hybrid Solvers \u2014 quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted\nvia the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching\nhybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid\nsolver request/response shapes.\n\n\nContact Support:\n Name: D-Wave Quantum Inc.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:29:14.000Z",
+    "updatedAt": "2026-07-28T01:29:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3c46c855-cd04-424e-a704-ed9647b8520e"
+  },
+  "item": [
+    {
+      "name": "regions",
+      "item": [
+        {
+          "name": "{code}",
+          "item": [
+            {
+              "name": "Get Region",
+              "id": "9d6b3c24-e961-4639-aa6d-19ab9bebdf76",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.metadata.region+json;version=1.0"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/regions/:code",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "regions",
+                    ":code"
+                  ],
+                  "variable": [
+                    {
+                      "id": "44bc6a13-f05c-45b5-84ce-507b7bde641d",
+                      "key": "code",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "bca52e5c-df92-4f9c-817e-f15260c80c2b",
+                  "name": "Region details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwave.metadata.region+json;version=1.0"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/regions/:code",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "regions",
+                        ":code"
+                      ],
+                      "variable": [
+                        {
+                          "key": "code"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwave.metadata.region+json;version=1.0"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"endpoint\": \"<uri>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:29:15.000Z",
+                  "updatedAt": "2026-07-28T01:29:15.000Z",
+                  "uid": "35240-bca52e5c-df92-4f9c-817e-f15260c80c2b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:29:15.000Z",
+              "updatedAt": "2026-07-28T01:29:15.000Z",
+              "uid": "35240-9d6b3c24-e961-4639-aa6d-19ab9bebdf76"
+            }
+          ],
+          "id": "046e1bce-1ae4-45e8-82d8-fdad0c88226d",
+          "createdAt": "2026-07-28T01:29:15.000Z",
+          "updatedAt": "2026-07-28T01:29:15.000Z",
+          "uid": "35240-046e1bce-1ae4-45e8-82d8-fdad0c88226d"
+        },
+        {
+          "name": "List Regions",
+          "id": "15e291ef-6da0-4f54-b66b-59620d3a1ab7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.metadata.regions+json;version=1.0"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/regions/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "regions",
+                ""
+              ]
+            },
+            "description": "Enumerate Leap regions and their SAPI base URLs."
+          },
+          "response": [
+            {
+              "id": "3da7a7ea-ec03-4f3c-96f9-2307367ac7cc",
+              "name": "Region list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.metadata.regions+json;version=1.0"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/regions/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "regions",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.metadata.regions+json;version=1.0"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"code\": \"<string>\",\n    \"endpoint\": \"<uri>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  {\n    \"code\": \"<string>\",\n    \"endpoint\": \"<uri>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-07-28T01:29:15.000Z",
+              "updatedAt": "2026-07-28T01:29:15.000Z",
+              "uid": "35240-3da7a7ea-ec03-4f3c-96f9-2307367ac7cc"
+            }
+          ],
+          "createdAt": "2026-07-28T01:29:15.000Z",
+          "updatedAt": "2026-07-28T01:29:15.000Z",
+          "uid": "35240-15e291ef-6da0-4f54-b66b-59620d3a1ab7"
+        }
+      ],
+      "id": "57687da7-f7ec-45d5-9cdf-0cd1c6ed3c9c",
+      "createdAt": "2026-07-28T01:29:15.000Z",
+      "updatedAt": "2026-07-28T01:29:15.000Z",
+      "uid": "35240-57687da7-f7ec-45d5-9cdf-0cd1c6ed3c9c"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.dwavesys.com/sapi/v2"
+    }
+  ]
+}

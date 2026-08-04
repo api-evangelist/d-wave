@@ -1,0 +1,348 @@
+{
+  "info": {
+    "_postman_id": "68e3317e-2559-4eea-b666-f3d0d8bd20ce",
+    "name": "D-Wave Leap Hybrid Account Solvers API",
+    "description": "Leap Hybrid Solvers \u2014 quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted\nvia the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching\nhybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid\nsolver request/response shapes.\n\n\nContact Support:\n Name: D-Wave Quantum Inc.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:29:10.000Z",
+    "updatedAt": "2026-07-28T01:29:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-68e3317e-2559-4eea-b666-f3d0d8bd20ce"
+  },
+  "item": [
+    {
+      "name": "solvers",
+      "item": [
+        {
+          "name": "remote",
+          "item": [
+            {
+              "name": "{solver_name}",
+              "item": [
+                {
+                  "name": "Get Solver",
+                  "id": "904cdf58-2f2f-4496-b53b-4da35588006d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwave.sapi.solver-definition+json;version=3.0.0"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/solvers/remote/:solver_name?filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "solvers",
+                        "remote",
+                        ":solver_name"
+                      ],
+                      "query": [
+                        {
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "b431f95b-9f5a-49f5-91d9-6a9446d47702",
+                          "key": "solver_name",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve full configuration and properties for a single solver."
+                  },
+                  "response": [
+                    {
+                      "id": "f9dbf7d5-7405-4f69-a729-210a96f8ed34",
+                      "name": "Solver configuration",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwave.sapi.solver-definition+json;version=3.0.0"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/solvers/remote/:solver_name?filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "solvers",
+                            "remote",
+                            ":solver_name"
+                          ],
+                          "query": [
+                            {
+                              "key": "filter",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "solver_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwave.sapi.solver-definition+json;version=3.0.0"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"UNKNOWN\",\n  \"properties\": {\n    \"category\": \"hybrid\",\n    \"supported_problem_types\": [\n      \"nl\",\n      \"dqm\"\n    ],\n    \"num_qubits\": \"<integer>\",\n    \"topology\": {\n      \"type\": \"chimera\",\n      \"shape\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"parameters\": {\n      \"Lorem_1b\": \"dolore pariatur et\",\n      \"deserunt08d\": 47864105.43700835,\n      \"eta1d\": \"dolor aute\"\n    }\n  },\n  \"description\": \"<string>\",\n  \"avg_load\": \"<number>\"\n}",
+                      "createdAt": "2026-07-28T01:29:10.000Z",
+                      "updatedAt": "2026-07-28T01:29:10.000Z",
+                      "uid": "35240-f9dbf7d5-7405-4f69-a729-210a96f8ed34"
+                    },
+                    {
+                      "id": "b2aeb78d-dd1d-47c7-9a5a-2d618591f8e2",
+                      "name": "Solver not found or not accessible to project",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/solvers/remote/:solver_name?filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "solvers",
+                            "remote",
+                            ":solver_name"
+                          ],
+                          "query": [
+                            {
+                              "key": "filter",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "solver_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:29:10.000Z",
+                      "updatedAt": "2026-07-28T01:29:10.000Z",
+                      "uid": "35240-b2aeb78d-dd1d-47c7-9a5a-2d618591f8e2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:29:10.000Z",
+                  "updatedAt": "2026-07-28T01:29:10.000Z",
+                  "uid": "35240-904cdf58-2f2f-4496-b53b-4da35588006d"
+                }
+              ],
+              "id": "9f307f55-76dd-465f-940f-b4682d444aa0",
+              "createdAt": "2026-07-28T01:29:10.000Z",
+              "updatedAt": "2026-07-28T01:29:10.000Z",
+              "uid": "35240-9f307f55-76dd-465f-940f-b4682d444aa0"
+            },
+            {
+              "name": "List Solvers",
+              "id": "42317db9-d92f-4849-a2f4-cf530fafe515",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.sapi.solver-definition-list+json;version=3.0.0"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/solvers/remote/?filter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "solvers",
+                    "remote",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Solver filter expression (e.g. `none,+properties.topology.type`).",
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "List remote solvers available to the authenticated project, with optional filter."
+              },
+              "response": [
+                {
+                  "id": "4f99f993-3514-40c6-84b4-e2ac09090f04",
+                  "name": "Solver list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwave.sapi.solver-definition-list+json;version=3.0.0"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/solvers/remote/?filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "solvers",
+                        "remote",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Solver filter expression (e.g. `none,+properties.topology.type`).",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwave.sapi.solver-definition-list+json;version=3.0.0"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"status\": \"ONLINE\",\n    \"properties\": {\n      \"category\": \"software\",\n      \"supported_problem_types\": [\n        \"cqm\",\n        \"cqm\"\n      ],\n      \"num_qubits\": \"<integer>\",\n      \"topology\": {\n        \"type\": \"zephyr\",\n        \"shape\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      },\n      \"parameters\": {\n        \"nulla_4e\": 79828864,\n        \"Duis_052\": -21088199.57119578,\n        \"commodo__\": 33553322\n      }\n    },\n    \"description\": \"<string>\",\n    \"avg_load\": \"<number>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"status\": \"OFFLINE\",\n    \"properties\": {\n      \"category\": \"software\",\n      \"supported_problem_types\": [\n        \"qubo\",\n        \"bqm\"\n      ],\n      \"num_qubits\": \"<integer>\",\n      \"topology\": {\n        \"type\": \"chimera\",\n        \"shape\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      },\n      \"parameters\": {\n        \"elit_47f\": 89273275.99961442,\n        \"consectetur_3\": 52573173.778880656\n      }\n    },\n    \"description\": \"<string>\",\n    \"avg_load\": \"<number>\"\n  }\n]",
+                  "createdAt": "2026-07-28T01:29:10.000Z",
+                  "updatedAt": "2026-07-28T01:29:10.000Z",
+                  "uid": "35240-4f99f993-3514-40c6-84b4-e2ac09090f04"
+                },
+                {
+                  "id": "31184432-f7f9-4113-ab01-5ba67b8efafd",
+                  "name": "Missing or invalid SAPI token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/solvers/remote/?filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "solvers",
+                        "remote",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Solver filter expression (e.g. `none,+properties.topology.type`).",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:29:10.000Z",
+                  "updatedAt": "2026-07-28T01:29:10.000Z",
+                  "uid": "35240-31184432-f7f9-4113-ab01-5ba67b8efafd"
+                }
+              ],
+              "createdAt": "2026-07-28T01:29:10.000Z",
+              "updatedAt": "2026-07-28T01:29:10.000Z",
+              "uid": "35240-42317db9-d92f-4849-a2f4-cf530fafe515"
+            }
+          ],
+          "id": "98a6b6c5-c531-40e4-838c-d44788a8444b",
+          "createdAt": "2026-07-28T01:29:10.000Z",
+          "updatedAt": "2026-07-28T01:29:10.000Z",
+          "uid": "35240-98a6b6c5-c531-40e4-838c-d44788a8444b"
+        }
+      ],
+      "id": "56050f65-e843-4586-9c12-5f7f6935a4fc",
+      "createdAt": "2026-07-28T01:29:10.000Z",
+      "updatedAt": "2026-07-28T01:29:10.000Z",
+      "uid": "35240-56050f65-e843-4586-9c12-5f7f6935a4fc"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.dwavesys.com/sapi/v2"
+    }
+  ]
+}

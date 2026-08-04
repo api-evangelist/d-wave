@@ -1,0 +1,152 @@
+{
+  "info": {
+    "_postman_id": "6d066caf-a233-46d0-a186-3c5a4377f471",
+    "name": "D-Wave Leap Hybrid Solvers Account QPU API",
+    "description": "Leap Hybrid Solvers \u2014 quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted\nvia the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching\nhybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid\nsolver request/response shapes.\n\n\nContact Support:\n Name: D-Wave Quantum Inc.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:29:13.000Z",
+    "updatedAt": "2026-07-28T01:29:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6d066caf-a233-46d0-a186-3c5a4377f471"
+  },
+  "item": [
+    {
+      "name": "problems",
+      "item": [
+        {
+          "name": "Submit QPU Problem",
+          "id": "fa633079-d2d2-4511-8b9b-1dc7174762d7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"solver\": \"<string>\",\n  \"type\": \"qubo\",\n  \"data\": {\n    \"format\": \"qp\",\n    \"lin\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"quad\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"offset\": \"<number>\"\n  },\n  \"params\": {\n    \"num_reads\": \"<integer>\",\n    \"annealing_time\": \"<number>\",\n    \"chain_strength\": \"<number>\",\n    \"auto_scale\": \"<boolean>\",\n    \"anneal_schedule\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"h_gain_schedule\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"programming_thermalization\": \"<number>\",\n    \"readout_thermalization\": \"<number>\",\n    \"flux_biases\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"reverse_anneal_schedule\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"initial_state\": [\n      1,\n      1\n    ],\n    \"answer_mode\": \"histogram\"\n  },\n  \"label\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/problems/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "problems",
+                ""
+              ]
+            },
+            "description": "Submit an Ising or QUBO problem to a D-Wave QPU sampler."
+          },
+          "response": [
+            {
+              "id": "81c74105-c9ec-41bb-a836-f42e3b6a1213",
+              "name": "QPU problem status (with answer if returned within time limit)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"solver\": \"<string>\",\n  \"type\": \"qubo\",\n  \"data\": {\n    \"format\": \"qp\",\n    \"lin\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"quad\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"offset\": \"<number>\"\n  },\n  \"params\": {\n    \"num_reads\": \"<integer>\",\n    \"annealing_time\": \"<number>\",\n    \"chain_strength\": \"<number>\",\n    \"auto_scale\": \"<boolean>\",\n    \"anneal_schedule\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"h_gain_schedule\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"programming_thermalization\": \"<number>\",\n    \"readout_thermalization\": \"<number>\",\n    \"flux_biases\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"reverse_anneal_schedule\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"initial_state\": [\n      1,\n      1\n    ],\n    \"answer_mode\": \"histogram\"\n  },\n  \"label\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/problems/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "problems",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"solver\": \"<string>\",\n  \"status\": \"PENDING\",\n  \"submitted_on\": \"<dateTime>\",\n  \"solved_on\": \"<dateTime>\",\n  \"answer\": {\n    \"format\": \"qp\",\n    \"active_variables\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"energies\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"num_occurrences\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"solutions\": [\n      [\n        1,\n        1\n      ],\n      [\n        1,\n        1\n      ]\n    ],\n    \"timing\": {\n      \"qpu_sampling_time\": \"<number>\",\n      \"qpu_anneal_time_per_sample\": \"<number>\",\n      \"qpu_readout_time_per_sample\": \"<number>\",\n      \"qpu_access_time\": \"<number>\",\n      \"qpu_programming_time\": \"<number>\",\n      \"total_post_processing_time\": \"<number>\"\n    },\n    \"num_variables\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:29:14.000Z",
+              "updatedAt": "2026-07-28T01:29:14.000Z",
+              "uid": "35240-81c74105-c9ec-41bb-a836-f42e3b6a1213"
+            }
+          ],
+          "createdAt": "2026-07-28T01:29:14.000Z",
+          "updatedAt": "2026-07-28T01:29:14.000Z",
+          "uid": "35240-fa633079-d2d2-4511-8b9b-1dc7174762d7"
+        }
+      ],
+      "id": "a1e889c1-fb12-46c8-bb24-ec0c7f832156",
+      "createdAt": "2026-07-28T01:29:14.000Z",
+      "updatedAt": "2026-07-28T01:29:14.000Z",
+      "uid": "35240-a1e889c1-fb12-46c8-bb24-ec0c7f832156"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.dwavesys.com/sapi/v2"
+    }
+  ]
+}

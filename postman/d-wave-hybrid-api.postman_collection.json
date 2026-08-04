@@ -1,0 +1,152 @@
+{
+  "info": {
+    "_postman_id": "179a9225-f9b3-4ccf-8efc-81894d9a880c",
+    "name": "D-Wave Leap Solvers Account Hybrid API",
+    "description": "Leap Hybrid Solvers \u2014 quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted\nvia the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching\nhybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid\nsolver request/response shapes.\n\n\nContact Support:\n Name: D-Wave Quantum Inc.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:29:12.000Z",
+    "updatedAt": "2026-07-28T01:29:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-179a9225-f9b3-4ccf-8efc-81894d9a880c"
+  },
+  "item": [
+    {
+      "name": "problems",
+      "item": [
+        {
+          "name": "Submit Hybrid Problem",
+          "id": "ec2dc223-3f6e-4273-a2a2-ded61e5224a8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"solver\": \"hybrid_discrete_quadratic_model_version1p\",\n  \"type\": \"cqm\",\n  \"data\": {\n    \"format\": \"ref\",\n    \"data\": \"<string>\"\n  },\n  \"params\": {\n    \"time_limit\": \"<number>\",\n    \"label\": \"<string>\"\n  },\n  \"label\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/problems/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "problems",
+                ""
+              ]
+            },
+            "description": "Submit a Constrained Quadratic Model (CQM), Binary Quadratic Model (BQM), Discrete\nQuadratic Model (DQM), or Nonlinear (NL) problem to a Leap hybrid solver. Supports\nindustry-scale problems up to ~2 million variables/constraints. Solver name must\nmatch an active hybrid solver discoverable via `/solvers/remote/`.\n"
+          },
+          "response": [
+            {
+              "id": "be43c7e3-f8e1-4745-8359-645b925ad107",
+              "name": "Hybrid problem status",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"solver\": \"hybrid_discrete_quadratic_model_version1p\",\n  \"type\": \"cqm\",\n  \"data\": {\n    \"format\": \"ref\",\n    \"data\": \"<string>\"\n  },\n  \"params\": {\n    \"time_limit\": \"<number>\",\n    \"label\": \"<string>\"\n  },\n  \"label\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/problems/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "problems",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwave.sapi.problems+json;version=3.0.0"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"solver\": \"<string>\",\n  \"status\": \"IN_PROGRESS\",\n  \"submitted_on\": \"<dateTime>\",\n  \"solved_on\": \"<dateTime>\",\n  \"answer\": {\n    \"format\": \"binary-ref\",\n    \"data\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"auth_method\": \"sapi-token\"\n  }\n}",
+              "createdAt": "2026-07-28T01:29:13.000Z",
+              "updatedAt": "2026-07-28T01:29:13.000Z",
+              "uid": "35240-be43c7e3-f8e1-4745-8359-645b925ad107"
+            }
+          ],
+          "createdAt": "2026-07-28T01:29:13.000Z",
+          "updatedAt": "2026-07-28T01:29:13.000Z",
+          "uid": "35240-ec2dc223-3f6e-4273-a2a2-ded61e5224a8"
+        }
+      ],
+      "id": "4c48643d-9790-4337-96d0-affafbcf8bd8",
+      "createdAt": "2026-07-28T01:29:13.000Z",
+      "updatedAt": "2026-07-28T01:29:13.000Z",
+      "uid": "35240-4c48643d-9790-4337-96d0-affafbcf8bd8"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.dwavesys.com/sapi/v2"
+    }
+  ]
+}

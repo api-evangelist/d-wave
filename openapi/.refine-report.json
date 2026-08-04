@@ -1,0 +1,24 @@
+{
+  "provider": "d-wave",
+  "sources": [
+    "d-wave-account-api-openapi.yml",
+    "d-wave-hybrid-api-openapi.yml",
+    "d-wave-problems-api-openapi.yml",
+    "d-wave-qpu-api-openapi.yml",
+    "d-wave-regions-api-openapi.yml",
+    "d-wave-solvers-api-openapi.yml"
+  ],
+  "outputs": [
+    "d-wave-account-api-openapi.yml",
+    "d-wave-hybrid-api-openapi.yml",
+    "d-wave-problems-api-openapi.yml",
+    "d-wave-qpu-api-openapi.yml",
+    "d-wave-regions-api-openapi.yml",
+    "d-wave-solvers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
