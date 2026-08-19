@@ -1,0 +1,313 @@
+{
+  "item": [
+    {
+      "id": "b46ba2f8-1743-49d4-98d4-66946125a8bf",
+      "name": "Account",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e8be14b9-e331-4473-b0db-10c4ac54a7dd",
+          "name": "Get Active Project",
+          "request": {
+            "name": "Get Active Project",
+            "description": {
+              "content": "Retrieve the authenticated user's active Leap project as selected in the Leap dashboard.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "active_project",
+                "oauth",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "19af2dbb-04da-41a2-9f81-7b662eb280a8",
+              "name": "Active project",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "active_project",
+                    "oauth",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"code\": \"string\",\n  \"description\": \"string\",\n  \"organization\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68fec89e-4a2e-4d96-a514-0ef228d746aa",
+          "name": "List Projects",
+          "request": {
+            "name": "List Projects",
+            "description": {
+              "content": "Retrieve the list of Leap projects accessible to the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "projects",
+                "oauth",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d604f123-4913-45bf-867f-86d43cbf9451",
+              "name": "Project list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "projects",
+                    "oauth",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"code\": \"string\",\n    \"description\": \"string\",\n    \"organization\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"code\": \"string\",\n    \"description\": \"string\",\n    \"organization\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1cf83a25-e9fe-4773-bb52-9d41b2172529",
+          "name": "Get Project SAPI Token",
+          "request": {
+            "name": "Get Project SAPI Token",
+            "description": {
+              "content": "Retrieve a SAPI token for a given Leap project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "token",
+                "oauth",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a78de96-6de7-4cd9-895f-bfe1b4308b30",
+              "name": "SAPI token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "token",
+                    "oauth",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"project_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cloud.dwavesys.com/sapi/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0aefa569-04df-4dcd-9dd9-1c840239087a",
+    "name": "D-Wave Leap Hybrid Solvers Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Leap Hybrid Solvers — quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted\nvia the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching\nhybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid\nsolver request/response shapes.\n\n\nContact Support:\n Name: D-Wave Quantum Inc.",
+      "type": "text/plain"
+    }
+  }
+}

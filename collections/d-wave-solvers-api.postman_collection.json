@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "7386805d-6d32-4f7c-8017-edbb3b21b275",
+      "id": "1ef4b170-5e63-46f3-b039-dfe930d20998",
       "name": "Solvers",
       "description": {
         "content": "",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "58519ccf-fac8-4ac0-bd3b-f0546a701b6b",
+          "id": "9b31228f-510e-4cdf-a2cc-ff08762f9ec4",
           "name": "List Solvers",
           "request": {
             "name": "List Solvers",
@@ -47,7 +47,7 @@
           },
           "response": [
             {
-              "id": "8ac93028-5cc8-4eca-bb20-0f0c61c577e0",
+              "id": "77f56cde-97e1-4e11-a9ad-60618e2f6d94",
               "name": "Solver list",
               "originalRequest": {
                 "url": {
@@ -92,12 +92,12 @@
                   "value": "application/vnd.dwave.sapi.solver-definition-list+json;version=3.0.0"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"Advantage_system6.4\",\n    \"status\": \"ONLINE\",\n    \"properties\": {\n      \"category\": \"qpu\",\n      \"supported_problem_types\": [\n        \"ising\",\n        \"ising\"\n      ],\n      \"num_qubits\": 8286,\n      \"topology\": {\n        \"type\": \"chimera\",\n        \"shape\": [\n          3719,\n          9490\n        ]\n      },\n      \"parameters\": {\n        \"key_0\": false\n      }\n    },\n    \"description\": \"string\",\n    \"avg_load\": 2409.2576408286936\n  },\n  {\n    \"id\": \"Advantage_system6.4\",\n    \"status\": \"ONLINE\",\n    \"properties\": {\n      \"category\": \"qpu\",\n      \"supported_problem_types\": [\n        \"bqm\",\n        \"nl\"\n      ],\n      \"num_qubits\": 9777,\n      \"topology\": {\n        \"type\": \"zephyr\",\n        \"shape\": [\n          4585,\n          8289\n        ]\n      },\n      \"parameters\": {\n        \"key_0\": 4744.315086136196,\n        \"key_1\": true,\n        \"key_2\": \"string\"\n      }\n    },\n    \"description\": \"string\",\n    \"avg_load\": 1347.4661495057805\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"Advantage_system6.4\",\n    \"status\": \"ONLINE\",\n    \"properties\": {\n      \"category\": \"qpu\",\n      \"supported_problem_types\": [\n        \"cqm\",\n        \"qubo\"\n      ],\n      \"num_qubits\": 3008,\n      \"topology\": {\n        \"type\": \"chimera\",\n        \"shape\": [\n          2541,\n          5897\n        ]\n      },\n      \"parameters\": {\n        \"key_0\": 7543.923138305653\n      }\n    },\n    \"description\": \"string\",\n    \"avg_load\": 3451.9213995512255\n  },\n  {\n    \"id\": \"Advantage_system6.4\",\n    \"status\": \"UNKNOWN\",\n    \"properties\": {\n      \"category\": \"software\",\n      \"supported_problem_types\": [\n        \"qubo\",\n        \"ising\"\n      ],\n      \"num_qubits\": 3979,\n      \"topology\": {\n        \"type\": \"chimera\",\n        \"shape\": [\n          4149,\n          9848\n        ]\n      },\n      \"parameters\": {\n        \"key_0\": false,\n        \"key_1\": 2358.4934042329173,\n        \"key_2\": 8159.285561808901\n      }\n    },\n    \"description\": \"string\",\n    \"avg_load\": 687.5898499872213\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "894b327b-0d16-43f8-a418-46c1a676a51c",
+              "id": "0d65ccae-7054-4c2f-abcc-2b1f829d0d23",
               "name": "Missing or invalid SAPI token",
               "originalRequest": {
                 "url": {
@@ -149,7 +149,7 @@
           }
         },
         {
-          "id": "b56449f6-6580-455a-87a6-1fb868bee6f8",
+          "id": "7db09c0f-123a-44ed-9247-963e413a90c2",
           "name": "Get Solver",
           "request": {
             "name": "Get Solver",
@@ -194,7 +194,7 @@
           },
           "response": [
             {
-              "id": "0b3fb376-f030-4b39-85b8-9ddded00d671",
+              "id": "c1df67b2-bc37-442a-9d4a-8f676ef41662",
               "name": "Solver configuration",
               "originalRequest": {
                 "url": {
@@ -247,12 +247,12 @@
                   "value": "application/vnd.dwave.sapi.solver-definition+json;version=3.0.0"
                 }
               ],
-              "body": "{\n  \"id\": \"Advantage_system6.4\",\n  \"status\": \"UNKNOWN\",\n  \"properties\": {\n    \"category\": \"software\",\n    \"supported_problem_types\": [\n      \"cqm\",\n      \"nl\"\n    ],\n    \"num_qubits\": 8342,\n    \"topology\": {\n      \"type\": \"zephyr\",\n      \"shape\": [\n        7731,\n        9383\n      ]\n    },\n    \"parameters\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"description\": \"string\",\n  \"avg_load\": 4684.392638472112\n}",
+              "body": "{\n  \"id\": \"Advantage_system6.4\",\n  \"status\": \"OFFLINE\",\n  \"properties\": {\n    \"category\": \"software\",\n    \"supported_problem_types\": [\n      \"bqm\",\n      \"nl\"\n    ],\n    \"num_qubits\": 4524,\n    \"topology\": {\n      \"type\": \"zephyr\",\n      \"shape\": [\n        1889,\n        6590\n      ]\n    },\n    \"parameters\": {\n      \"key_0\": 4593,\n      \"key_1\": \"string\",\n      \"key_2\": 5852,\n      \"key_3\": 1975\n    }\n  },\n  \"description\": \"string\",\n  \"avg_load\": 5796.711646724841\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "6f9a8f64-405e-48b6-a4c2-afbb7c0ea3df",
+              "id": "0095b2ce-c9eb-4b78-ac8f-bda8194d95ba",
               "name": "Solver not found or not accessible to project",
               "originalRequest": {
                 "url": {
@@ -341,11 +341,11 @@
     ]
   },
   "info": {
-    "_postman_id": "d750929c-888f-467f-9afa-6e8a96afaa3b",
-    "name": "D-Wave Solver API (SAPI) - Solvers",
+    "_postman_id": "47591d56-a657-4ae1-819c-9a5e2b28219d",
+    "name": "D-Wave Leap Hybrid Account Solvers API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "D-Wave Solver API (SAPI) — Solvers resource. Discover quantum (QPU) and hybrid solvers\navailable to the authenticated project on the Leap quantum cloud service. Each solver\nadvertises its capability metadata (problem types, parameters, properties, status).\n\n\nContact Support:\n Name: D-Wave Quantum Inc.",
+      "content": "Leap Hybrid Solvers — quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted\nvia the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching\nhybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid\nsolver request/response shapes.\n\n\nContact Support:\n Name: D-Wave Quantum Inc.",
       "type": "text/plain"
     }
   }

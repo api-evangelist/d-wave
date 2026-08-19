@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "D-Wave Leap Hybrid Solvers Account Regions API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Regions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/sapi/v2/regions/"
+          },
+          "docs": "Enumerate Leap regions and their SAPI base URLs."
+        },
+        {
+          "info": {
+            "name": "Get Region",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/sapi/v2/regions/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "na-west-1",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Region"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

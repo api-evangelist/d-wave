@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "D-Wave Leap Hybrid Solvers Account API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Active Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/sapi/v2/account/active_project/oauth/"
+          },
+          "docs": "Retrieve the authenticated user's active Leap project as selected in the Leap dashboard."
+        },
+        {
+          "info": {
+            "name": "List Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/sapi/v2/account/projects/oauth/"
+          },
+          "docs": "Retrieve the list of Leap projects accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Get Project SAPI Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.dwavesys.com/sapi/v2/account/token/oauth/",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a SAPI token for a given Leap project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "D-Wave Solver API (SAPI) - Problems",
+    "name": "D-Wave Leap Hybrid Solvers Account Problems API",
     "version": "3.0"
   },
   "request": {
