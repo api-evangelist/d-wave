@@ -1,23 +1,20 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: D-Wave Leap Hybrid Solvers Account API
-  version: '3.0'
-  description: 'Leap Hybrid Solvers — quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted
+  title: D-Wave Leap Account API
+  version: '1.0'
+  description: 'D-Wave Leap Account API — OAuth-backed endpoints for retrieving the active Leap
 
-    via the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching
+    project, listing accessible projects, and provisioning project-scoped SAPI tokens
 
-    hybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid
-
-    solver request/response shapes.
+    for use against the Solver API.
 
     '
   contact:
     name: D-Wave Quantum Inc.
-    url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
 servers:
-- url: https://cloud.dwavesys.com/sapi/v2
+- url: https://cloud.dwavesys.com/leap/api
 security:
-- SapiToken: []
+- LeapOAuth: []
 tags:
 - name: Account
 paths:
@@ -73,14 +70,6 @@ paths:
                 $ref: '#/components/schemas/LeapProjectToken'
 components:
   schemas:
-    LeapProjectToken:
-      type: object
-      properties:
-        token:
-          type: string
-          description: Opaque SAPI token to send as `X-Auth-Token` against the Solver API.
-        project_id:
-          type: string
     LeapProject:
       type: object
       properties:
@@ -94,8 +83,20 @@ components:
           type: string
         organization:
           type: string
+    LeapProjectToken:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Opaque SAPI token to send as `X-Auth-Token` against the Solver API.
+        project_id:
+          type: string
   securitySchemes:
-    SapiToken:
-      type: apiKey
-      in: header
-      name: X-Auth-Token
+    LeapOAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://cloud.dwavesys.com/leap/oauth/authorize
+          tokenUrl: https://cloud.dwavesys.com/leap/oauth/token
+          scopes:
+            account: Read account, projects, and tokens

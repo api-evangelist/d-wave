@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: D-Wave Leap Hybrid Account Solvers API
   version: '3.0'
@@ -73,10 +73,10 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Solver not found or not accessible to project
     Unauthorized:
       description: Missing or invalid SAPI token
+    NotFound:
+      description: Solver not found or not accessible to project
   schemas:
     SolverConfiguration:
       type: object

@@ -1,24 +1,37 @@
 {
   "provider": "d-wave",
   "sources": [
-    "d-wave-account-api-openapi.yml",
-    "d-wave-hybrid-api-openapi.yml",
-    "d-wave-problems-api-openapi.yml",
-    "d-wave-qpu-api-openapi.yml",
-    "d-wave-regions-api-openapi.yml",
-    "d-wave-solvers-api-openapi.yml"
+    "_original/d-wave-hybrid-solvers-openapi.yml",
+    "_original/d-wave-leap-account-api-openapi.yml",
+    "_original/d-wave-metadata-api-openapi.yml",
+    "_original/d-wave-qpu-samplers-openapi.yml"
   ],
   "outputs": [
-    "d-wave-account-api-openapi.yml",
     "d-wave-hybrid-api-openapi.yml",
-    "d-wave-problems-api-openapi.yml",
-    "d-wave-qpu-api-openapi.yml",
+    "d-wave-account-api-openapi.yml",
     "d-wave-regions-api-openapi.yml",
-    "d-wave-solvers-api-openapi.yml"
+    "d-wave-qpu-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "d-wave-hybrid-solvers-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "d-wave-hybrid-solvers-openapi.yml: declared missing tag: Hybrid",
+    "d-wave-leap-account-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "d-wave-leap-account-api-openapi.yml: declared missing tag: Account",
+    "d-wave-metadata-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "d-wave-metadata-api-openapi.yml: declared missing tag: Regions",
+    "d-wave-qpu-samplers-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "d-wave-qpu-samplers-openapi.yml: declared missing tag: QPU"
+  ],
+  "skipped": [
+    "d-wave-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "d-wave-hybrid-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "d-wave-problems-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "d-wave-qpu-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "d-wave-regions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "d-wave-solvers-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

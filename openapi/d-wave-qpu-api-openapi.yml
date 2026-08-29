@@ -1,19 +1,19 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: D-Wave Leap Hybrid Solvers Account QPU API
+  title: D-Wave Samplers (Advantage / Advantage2) QPU API
   version: '3.0'
-  description: 'Leap Hybrid Solvers — quantum-classical hybrid samplers (BQM, CQM, DQM, NL) submitted
+  description: 'Direct access to D-Wave quantum annealing QPUs (Advantage with Pegasus topology and
 
-    via the standard SAPI Problems endpoint with `type=bqm|cqm|dqm|nl` and the matching
+    Advantage2 with Zephyr topology) through the SAPI Problems endpoint with
 
-    hybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid
+    `type=ising|qubo`. Problems are submitted with QPU-specific annealing parameters and
 
-    solver request/response shapes.
+    return Ising/QUBO answers with energies, occurrences, and sample vectors.
 
     '
   contact:
     name: D-Wave Quantum Inc.
-    url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
+    url: https://docs.dwavequantum.com/en/quantum_research/index_about.html
 servers:
 - url: https://cloud.dwavesys.com/sapi/v2
 security:
@@ -43,31 +43,6 @@ paths:
                 $ref: '#/components/schemas/QpuProblemStatus'
 components:
   schemas:
-    QpuProblemStatus:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        solver:
-          type: string
-        status:
-          type: string
-          enum:
-          - PENDING
-          - IN_PROGRESS
-          - COMPLETED
-          - FAILED
-          - CANCELLED
-        submitted_on:
-          type: string
-          format: date-time
-        solved_on:
-          type: string
-          format: date-time
-        answer:
-          $ref: '#/components/schemas/QpuAnswer'
     QpuParams:
       type: object
       properties:
@@ -125,6 +100,44 @@ components:
           enum:
           - raw
           - histogram
+    QpuProblemJob:
+      type: object
+      required:
+      - solver
+      - type
+      - data
+      properties:
+        solver:
+          type: string
+          example: Advantage_system6.4
+        type:
+          type: string
+          enum:
+          - ising
+          - qubo
+        data:
+          type: object
+          properties:
+            format:
+              type: string
+              enum:
+              - qp
+            lin:
+              type: array
+              items:
+                type: number
+              description: Linear biases on active qubits.
+            quad:
+              type: array
+              items:
+                type: number
+              description: Quadratic couplings between coupled qubits.
+            offset:
+              type: number
+        params:
+          $ref: '#/components/schemas/QpuParams'
+        label:
+          type: string
     QpuAnswer:
       type: object
       properties:
@@ -170,44 +183,31 @@ components:
               type: number
         num_variables:
           type: integer
-    QpuProblemJob:
+    QpuProblemStatus:
       type: object
-      required:
-      - solver
-      - type
-      - data
       properties:
-        solver:
+        id:
           type: string
-          example: Advantage_system6.4
         type:
           type: string
-          enum:
-          - ising
-          - qubo
-        data:
-          type: object
-          properties:
-            format:
-              type: string
-              enum:
-              - qp
-            lin:
-              type: array
-              items:
-                type: number
-              description: Linear biases on active qubits.
-            quad:
-              type: array
-              items:
-                type: number
-              description: Quadratic couplings between coupled qubits.
-            offset:
-              type: number
-        params:
-          $ref: '#/components/schemas/QpuParams'
-        label:
+        solver:
           type: string
+        status:
+          type: string
+          enum:
+          - PENDING
+          - IN_PROGRESS
+          - COMPLETED
+          - FAILED
+          - CANCELLED
+        submitted_on:
+          type: string
+          format: date-time
+        solved_on:
+          type: string
+          format: date-time
+        answer:
+          $ref: '#/components/schemas/QpuAnswer'
   securitySchemes:
     SapiToken:
       type: apiKey

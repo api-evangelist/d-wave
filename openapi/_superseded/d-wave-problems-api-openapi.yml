@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: D-Wave Leap Hybrid Solvers Account Problems API
   version: '3.0'
@@ -222,61 +222,6 @@ paths:
                   additionalProperties: true
 components:
   schemas:
-    ProblemStatusWithAnswer:
-      allOf:
-      - $ref: '#/components/schemas/ProblemStatus'
-      - type: object
-        properties:
-          answer:
-            $ref: '#/components/schemas/ProblemAnswer'
-    EncodingFormatEnum:
-      type: string
-      enum:
-      - qp
-      - bq
-      - ref
-    ProblemStatus:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          $ref: '#/components/schemas/ProblemTypeEnum'
-        solver:
-          type: string
-        submitted_on:
-          type: string
-          format: date-time
-        status:
-          $ref: '#/components/schemas/ProblemStatusEnum'
-        label:
-          type: string
-        solved_on:
-          type: string
-          format: date-time
-    ProblemJob:
-      type: object
-      required:
-      - solver
-      - type
-      - data
-      properties:
-        solver:
-          type: string
-          example: hybrid_nonlinear_program_v1
-        type:
-          $ref: '#/components/schemas/ProblemTypeEnum'
-        data:
-          oneOf:
-          - $ref: '#/components/schemas/ProblemData'
-          - $ref: '#/components/schemas/ProblemDataRef'
-        params:
-          type: object
-          additionalProperties: true
-          description: Solver parameters (e.g. num_reads, time_limit, annealing_time, chain_strength).
-        label:
-          type: string
-          maxLength: 1024
     ProblemData:
       type: object
       required:
@@ -297,15 +242,13 @@ components:
         data:
           type: string
           description: Base64-encoded binary payload (bq / nl formats).
-    ProblemTypeEnum:
-      type: string
-      enum:
-      - ising
-      - qubo
-      - bqm
-      - cqm
-      - dqm
-      - nl
+    ProblemSubmitError:
+      type: object
+      properties:
+        error_code:
+          type: integer
+        error_msg:
+          type: string
     ProblemInfo:
       type: object
       properties:
@@ -323,14 +266,6 @@ components:
         submitted_on:
           type: string
           format: date-time
-    ProblemStatusEnum:
-      type: string
-      enum:
-      - PENDING
-      - IN_PROGRESS
-      - COMPLETED
-      - FAILED
-      - CANCELLED
     ProblemAnswer:
       type: object
       properties:
@@ -359,6 +294,28 @@ components:
           additionalProperties: true
         num_variables:
           type: integer
+    EncodingFormatEnum:
+      type: string
+      enum:
+      - qp
+      - bq
+      - ref
+    ProblemTypeEnum:
+      type: string
+      enum:
+      - ising
+      - qubo
+      - bqm
+      - cqm
+      - dqm
+      - nl
+    ProblemStatusWithAnswer:
+      allOf:
+      - $ref: '#/components/schemas/ProblemStatus'
+      - type: object
+        properties:
+          answer:
+            $ref: '#/components/schemas/ProblemAnswer'
     ProblemDataRef:
       type: object
       required:
@@ -377,13 +334,56 @@ components:
           type: string
           enum:
           - sapi-token
-    ProblemSubmitError:
+    ProblemStatus:
       type: object
       properties:
-        error_code:
-          type: integer
-        error_msg:
+        id:
           type: string
+        type:
+          $ref: '#/components/schemas/ProblemTypeEnum'
+        solver:
+          type: string
+        submitted_on:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/ProblemStatusEnum'
+        label:
+          type: string
+        solved_on:
+          type: string
+          format: date-time
+    ProblemStatusEnum:
+      type: string
+      enum:
+      - PENDING
+      - IN_PROGRESS
+      - COMPLETED
+      - FAILED
+      - CANCELLED
+    ProblemJob:
+      type: object
+      required:
+      - solver
+      - type
+      - data
+      properties:
+        solver:
+          type: string
+          example: hybrid_nonlinear_program_v1
+        type:
+          $ref: '#/components/schemas/ProblemTypeEnum'
+        data:
+          oneOf:
+          - $ref: '#/components/schemas/ProblemData'
+          - $ref: '#/components/schemas/ProblemDataRef'
+        params:
+          type: object
+          additionalProperties: true
+          description: Solver parameters (e.g. num_reads, time_limit, annealing_time, chain_strength).
+        label:
+          type: string
+          maxLength: 1024
   securitySchemes:
     SapiToken:
       type: apiKey
