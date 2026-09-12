@@ -163,6 +163,8 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/d-wave.png
 access: 3rd-Party
 common:
+  - type: Website
+    url: https://www.dwavequantum.com/
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/d-wave/overview
   - type: AgenticAccess
