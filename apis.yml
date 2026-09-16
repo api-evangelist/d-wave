@@ -61,36 +61,6 @@ apis:
     url: json-schema/d-wave-qpu-properties-schema.json
   - type: Examples
     url: examples/d-wave-qpu-ising-example.json
-- aid: d-wave:d-wave-qpu-api
-  name: D-Wave QPU API
-  description: The QPU API from D-Wave — 1 operation(s) for qpu.
-  humanURL: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
-  baseURL: https://cloud.dwavesys.com/sapi/v2
-  tags:
-  - QPU
-  properties:
-  - type: OpenAPI
-    url: openapi/d-wave-qpu-api-openapi.yml
-  - type: Documentation
-    url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
-  - type: Examples
-    url: examples/d-wave-list-regions-example.json
-  - type: Documentation
-    url: https://docs.dwavequantum.com/en/latest/leap_sapi/leap_api.html
-  - type: Examples
-    url: examples/d-wave-leap-projects-example.json
-  - type: Documentation
-    url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
-  - type: JSONSchema
-    url: json-schema/d-wave-cqm-model-schema.json
-  - type: Examples
-    url: examples/d-wave-cqm-problem-example.json
-  - type: Documentation
-    url: https://docs.dwavequantum.com/en/quantum_research/index_about.html
-  - type: JSONSchema
-    url: json-schema/d-wave-qpu-properties-schema.json
-  - type: Examples
-    url: examples/d-wave-qpu-ising-example.json
 - aid: d-wave:d-wave-regions-api
   name: D-Wave Regions API
   description: The Regions API from D-Wave — 2 operation(s) for regions.
