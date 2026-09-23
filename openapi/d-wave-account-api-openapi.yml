@@ -6,9 +6,7 @@ info:
 
     project, listing accessible projects, and provisioning project-scoped SAPI tokens
 
-    for use against the Solver API.
-
-    '
+    for use against the Solver API.'
   contact:
     name: D-Wave Quantum Inc.
 servers:
@@ -70,6 +68,14 @@ paths:
                 $ref: '#/components/schemas/LeapProjectToken'
 components:
   schemas:
+    LeapProjectToken:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Opaque SAPI token to send as `X-Auth-Token` against the Solver API.
+        project_id:
+          type: string
     LeapProject:
       type: object
       properties:
@@ -82,14 +88,6 @@ components:
         description:
           type: string
         organization:
-          type: string
-    LeapProjectToken:
-      type: object
-      properties:
-        token:
-          type: string
-          description: Opaque SAPI token to send as `X-Auth-Token` against the Solver API.
-        project_id:
           type: string
   securitySchemes:
     LeapOAuth:

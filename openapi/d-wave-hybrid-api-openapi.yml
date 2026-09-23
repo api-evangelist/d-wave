@@ -8,9 +8,7 @@ info:
 
     hybrid solver name. This spec narrows the generic SAPI submit surface to the hybrid
 
-    solver request/response shapes.
-
-    '
+    solver request/response shapes.'
   contact:
     name: D-Wave Quantum Inc.
     url: https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html
@@ -31,9 +29,7 @@ paths:
 
         industry-scale problems up to ~2 million variables/constraints. Solver name must
 
-        match an active hybrid solver discoverable via `/solvers/remote/`.
-
-        '
+        match an active hybrid solver discoverable via `/solvers/remote/`.'
       tags:
       - Hybrid
       requestBody:

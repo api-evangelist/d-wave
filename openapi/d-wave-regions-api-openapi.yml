@@ -6,9 +6,7 @@ info:
 
     Used by Ocean''s `dwave-cloud-client` to route problem submissions to the correct
 
-    regional SAPI cluster.
-
-    '
+    regional SAPI cluster.'
   contact:
     name: D-Wave Quantum Inc.
     url: https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html
