@@ -1,5 +1,8 @@
 aid: d-wave
 url: https://raw.githubusercontent.com/api-evangelist/d-wave/refs/heads/main/apis.yml
+x-docs-platform: readthedocs
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-09-25
 apis:
 - aid: d-wave:d-wave-account-api
   name: D-Wave Account API
