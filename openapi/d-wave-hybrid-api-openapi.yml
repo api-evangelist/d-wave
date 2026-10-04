@@ -47,48 +47,6 @@ paths:
                 $ref: '#/components/schemas/HybridProblemStatus'
 components:
   schemas:
-    HybridProblemJob:
-      type: object
-      required:
-      - solver
-      - type
-      - data
-      properties:
-        solver:
-          type: string
-          enum:
-          - hybrid_nonlinear_program_v1
-          - hybrid_constrained_quadratic_model_version1p
-          - hybrid_binary_quadratic_model_version2p
-          - hybrid_discrete_quadratic_model_version1p
-        type:
-          type: string
-          enum:
-          - bqm
-          - cqm
-          - dqm
-          - nl
-        data:
-          type: object
-          properties:
-            format:
-              type: string
-              enum:
-              - bq
-              - ref
-            data:
-              type: string
-              description: Base64-encoded serialized dimod model.
-        params:
-          type: object
-          properties:
-            time_limit:
-              type: number
-              description: Solver wall-clock time limit in seconds.
-            label:
-              type: string
-        label:
-          type: string
     HybridProblemStatus:
       type: object
       properties:
@@ -131,6 +89,48 @@ components:
               type: string
               enum:
               - sapi-token
+    HybridProblemJob:
+      type: object
+      required:
+      - solver
+      - type
+      - data
+      properties:
+        solver:
+          type: string
+          enum:
+          - hybrid_nonlinear_program_v1
+          - hybrid_constrained_quadratic_model_version1p
+          - hybrid_binary_quadratic_model_version2p
+          - hybrid_discrete_quadratic_model_version1p
+        type:
+          type: string
+          enum:
+          - bqm
+          - cqm
+          - dqm
+          - nl
+        data:
+          type: object
+          properties:
+            format:
+              type: string
+              enum:
+              - bq
+              - ref
+            data:
+              type: string
+              description: Base64-encoded serialized dimod model.
+        params:
+          type: object
+          properties:
+            time_limit:
+              type: number
+              description: Solver wall-clock time limit in seconds.
+            label:
+              type: string
+        label:
+          type: string
   securitySchemes:
     SapiToken:
       type: apiKey
