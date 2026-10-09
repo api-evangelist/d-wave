@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: D-Wave Leap Plans & Pricing
 description: |
   D-Wave's commercial offering revolves around the Leap quantum cloud service. The
@@ -76,3 +80,38 @@ sources:
 - https://www.dwavequantum.com/get-started-with-d-wave/
 - https://docs.dwavequantum.com/en/latest/
 updated: '2026-05-25'
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - negotiated
+  units:
+  - compute
+  - negotiated
+  - period
+  plans:
+  - name: Free Developer Trial
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - month
+  - name: Premier (Commercial)
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - period
+    periods:
+    - month
+  - name: Enterprise
+    access: other
+    model: negotiated
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - year
