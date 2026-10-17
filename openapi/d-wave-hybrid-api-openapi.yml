@@ -47,48 +47,6 @@ paths:
                 $ref: '#/components/schemas/HybridProblemStatus'
 components:
   schemas:
-    HybridProblemStatus:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        solver:
-          type: string
-        status:
-          type: string
-          enum:
-          - PENDING
-          - IN_PROGRESS
-          - COMPLETED
-          - FAILED
-          - CANCELLED
-        submitted_on:
-          type: string
-          format: date-time
-        solved_on:
-          type: string
-          format: date-time
-        answer:
-          type: object
-          properties:
-            format:
-              type: string
-              enum:
-              - bq
-              - binary-ref
-            data:
-              type: string
-              description: Serialized dimod SampleSet (bq) or binary-ref pointer.
-            url:
-              type: string
-              format: uri
-              description: Present when format=binary-ref.
-            auth_method:
-              type: string
-              enum:
-              - sapi-token
     HybridProblemJob:
       type: object
       required:
@@ -131,6 +89,48 @@ components:
               type: string
         label:
           type: string
+    HybridProblemStatus:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        solver:
+          type: string
+        status:
+          type: string
+          enum:
+          - PENDING
+          - IN_PROGRESS
+          - COMPLETED
+          - FAILED
+          - CANCELLED
+        submitted_on:
+          type: string
+          format: date-time
+        solved_on:
+          type: string
+          format: date-time
+        answer:
+          type: object
+          properties:
+            format:
+              type: string
+              enum:
+              - bq
+              - binary-ref
+            data:
+              type: string
+              description: Serialized dimod SampleSet (bq) or binary-ref pointer.
+            url:
+              type: string
+              format: uri
+              description: Present when format=binary-ref.
+            auth_method:
+              type: string
+              enum:
+              - sapi-token
   securitySchemes:
     SapiToken:
       type: apiKey
