@@ -1,4 +1,4 @@
-# D-Wave (d-wave)
+# D-Wave
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,252 +66,185 @@
 
 D-Wave Quantum Inc. (NYSE: QBTS) is the leader in commercial quantum annealing computing and developer of the Advantage and Advantage2 quantum systems. D-Wave's Leap quantum cloud service provides real-time access to D-Wave QPUs and to the Leap hybrid solver family (BQM, CQM, DQM, NL) capable of solving industrial optimization problems with up to ~2 million variables and constraints. The open-source Ocean SDK — dimod, dwave-system, dwave-cloud-client, dwave-hybrid, dwave-samplers, dwave-optimization, minorminer, dwave-inspector, and 40+ companion packages — provides the canonical developer experience, with the underlying Solver API (SAPI) exposed as a versioned REST interface for solver discovery, problem submission, status polling, answer retrieval, and cancellation. Companion APIs include the Metadata API for region discovery and the Leap Account API for OAuth-based project and token management.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/d-wave/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/d-wave/refs/heads/main/apis.yml)
+**Areas:** Quantum Computing · Quantum Annealing · Optimization · Hybrid Quantum-Classical · Ising · QUBO · Industrial Optimization · Sampling · Leap · Ocean SDK · SAPI
 
-## Scope
+## D-Wave on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for D-Wave is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/d-wave/](https://apis.io/providers/d-wave/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (3)
 
-- Quantum Computing
-- Quantum Annealing
-- Optimization
-- Hybrid Quantum-Classical
-- Ising
-- QUBO
-- Industrial Optimization
-- Sampling
-- Leap
-- Ocean SDK
-- SAPI
+- [D-Wave Account API](https://apis.io/apis/d-wave/d-wave-account-api/) — The Account API from D-Wave — 3 operation(s) for account.
+- [D-Wave Hybrid API](https://apis.io/apis/d-wave/d-wave-hybrid-api/) — The Hybrid API from D-Wave — 1 operation(s) for hybrid.
+- [D-Wave Regions API](https://apis.io/apis/d-wave/d-wave-regions-api/) — The Regions API from D-Wave — 2 operation(s) for regions.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-25T00:00:00.000Z
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### D-Wave Solver API (SAPI) - Solvers
+Which operations an agent can call, which act, and which need a human in the loop.
 
-List, inspect, and discover D-Wave solvers available to the authenticated project, including quantum annealing QPU samplers (Advantage, Advantage2) and Leap hybrid samplers (BQM, CQM, DQM, NL). Solvers carry capability metadata (qubit count, topology, supported problem types, parameters, properties) so clients can match a workload to the correct sampler. Versioned via vendor media type `application/vnd.dwave.sapi.solver-definition+json;version~=3.0`.
+- [D Wave Agentic Access](https://apis.io/agentic-access/d-wave/d-wave-agentic-access/)
 
-- **Human URL:** [https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html](https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html)
-- **Base URL:** `https://cloud.dwavesys.com/sapi/v2`
+#### JSON Schema (5)
 
-#### Tags
+The data models the API reads and writes.
 
-- Quantum Computing
-- Quantum Annealing
-- Solvers
-- Optimization
+- [D-Wave Constrained Quadratic Model (CQM)](https://apis.io/schemas/d-wave/d-wave-cqm-model/)
+- [D-Wave Problem Job](https://apis.io/schemas/d-wave/d-wave-problem/)
+- [D-Wave Problem Answer](https://apis.io/schemas/d-wave/d-wave-problem-answer/)
+- [D-Wave QPU Properties](https://apis.io/schemas/d-wave/d-wave-qpu-properties/)
+- [D-Wave Solver Configuration](https://apis.io/schemas/d-wave/d-wave-solver-configuration/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html)
-- [OpenAPI](openapi/d-wave-solvers-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/d-wave-solvers-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/d-wave-solvers-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/d-wave-solver-configuration-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/d-wave-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Example](examples/d-wave-list-solvers-example.json)
+Linked-data contexts for the provider's vocabulary.
 
-### D-Wave Solver API (SAPI) - Problems
+- [D Wave Context](https://apis.io/jsonld/d-wave/d-wave-context/)
 
-Submit, monitor, retrieve, and cancel quantum and hybrid problem jobs. Supports the canonical problem types ising, qubo, bqm, cqm, dqm, and nl with three encoding formats (qp, bq, ref). Problems flow through PENDING > IN_PROGRESS > COMPLETED | FAILED | CANCELLED terminal states. Endpoints support blocking submit (single problem), batch async submit (multi-problem), short status polling, full-info retrieval, answer download (inline or binary-ref via SAPI-token), problem messages, and single/bulk cancel. Up to 1,000 problem IDs per status batch.
+#### Vocabulary (1)
 
-- **Human URL:** [https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html](https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html)
-- **Base URL:** `https://cloud.dwavesys.com/sapi/v2`
+The provider's domain terms, defined.
 
-#### Tags
+- [D-Wave Vocabulary](https://apis.io/vocabularies/d-wave/d-wave-vocabulary/)
 
-- Quantum Computing
-- Quantum Annealing
-- Problems
-- Sampling
-- Optimization
+#### Examples (7)
 
-#### Properties
+Example requests and responses.
 
-- [Documentation](https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html)
-- [OpenAPI](openapi/d-wave-problems-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/d-wave-problems-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/d-wave-problems-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/d-wave-problem-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/d-wave-problem-answer-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Example](examples/d-wave-submit-problem-example.json)
-- [Example](examples/d-wave-problem-status-example.json)
+- [D Wave Cqm Problem Example](https://apis.io/examples/d-wave/d-wave-cqm-problem-example/)
+- [D Wave Leap Projects Example](https://apis.io/examples/d-wave/d-wave-leap-projects-example/)
+- [D Wave List Regions Example](https://apis.io/examples/d-wave/d-wave-list-regions-example/)
+- [D Wave List Solvers Example](https://apis.io/examples/d-wave/d-wave-list-solvers-example/)
+- [D Wave Problem Status Example](https://apis.io/examples/d-wave/d-wave-problem-status-example/)
+- [D Wave Qpu Ising Example](https://apis.io/examples/d-wave/d-wave-qpu-ising-example/)
+- [D Wave Submit Problem Example](https://apis.io/examples/d-wave/d-wave-submit-problem-example/)
 
-### D-Wave Metadata API - Regions
+#### Collections (16)
 
-Discover D-Wave Leap regions and their per-region SAPI endpoints. The Metadata API is the canonical region resolver — clients call `/regions/` to enumerate available regions (e.g. `na-west-1`, `eu-central-1`) and `/regions/{code}` to retrieve a single region's SAPI base URL. Used by the Ocean `dwave-cloud-client` to route problem submissions to the correct regional SAPI cluster. Versioned via `application/vnd.dwave.metadata.regions+json;version~=1.0`.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html](https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html)
-- **Base URL:** `https://api.dwavesys.com/metadata/v1`
+- [D-Wave Leap Hybrid Solvers Account API](https://apis.io/collections/d-wave/open-d-wave-account-api/)
+- [D-Wave Leap Solvers Account Hybrid API](https://apis.io/collections/d-wave/open-d-wave-hybrid-api/)
+- [D-Wave Leap Hybrid Solvers](https://apis.io/collections/d-wave/open-d-wave-hybrid-solvers/)
+- [D-Wave Leap Account API](https://apis.io/collections/d-wave/open-d-wave-leap-account-api/)
+- [D-Wave Metadata API](https://apis.io/collections/d-wave/open-d-wave-metadata-api/)
+- [D-Wave Leap Hybrid Solvers Account Problems API](https://apis.io/collections/d-wave/open-d-wave-problems-api/)
+- [D-Wave Leap Hybrid Solvers Account QPU API](https://apis.io/collections/d-wave/open-d-wave-qpu-api/)
+- [D-Wave QPU Samplers (Advantage / Advantage2)](https://apis.io/collections/d-wave/open-d-wave-qpu-samplers/)
+- [D-Wave Leap Hybrid Solvers Account Regions API](https://apis.io/collections/d-wave/open-d-wave-regions-api/)
+- [D-Wave Leap Hybrid Account Solvers API](https://apis.io/collections/d-wave/open-d-wave-solvers-api/)
+- [D-Wave Leap Hybrid Solvers Account API](https://apis.io/collections/d-wave/postman-d-wave-account-api/)
+- [D-Wave Leap Solvers Account Hybrid API](https://apis.io/collections/d-wave/postman-d-wave-hybrid-api/)
+- [D-Wave Leap Hybrid Solvers Account Problems API](https://apis.io/collections/d-wave/postman-d-wave-problems-api/)
+- [D-Wave Leap Hybrid Solvers Account QPU API](https://apis.io/collections/d-wave/postman-d-wave-qpu-api/)
+- [D-Wave Leap Hybrid Solvers Account Regions API](https://apis.io/collections/d-wave/postman-d-wave-regions-api/)
+- [D-Wave Leap Hybrid Account Solvers API](https://apis.io/collections/d-wave/postman-d-wave-solvers-api/)
 
-#### Tags
+#### Governance rules (2)
 
-- Quantum Computing
-- Metadata
-- Regions
+Spectral rulesets for the provider's contracts.
 
-#### Properties
+- [D-Wave — jsonschema rules](https://apis.io/rules/d-wave/d-wave-jsonschema-spectral-rules/)
+- [D-Wave API Rules](https://apis.io/rules/d-wave/d-wave-rules/)
 
-- [Documentation](https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/index.html)
-- [OpenAPI](openapi/d-wave-metadata-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/d-wave-metadata-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/d-wave-metadata-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Example](examples/d-wave-list-regions-example.json)
+#### Security (2)
 
-### D-Wave Leap Account API
+Authentication, trust centre, and vulnerability disclosure.
 
-Manage Leap account projects and per-project SAPI tokens via OAuth. Endpoints include `account/active_project/oauth/` (retrieve user's active project), `account/projects/oauth/` (list all accessible projects), and `account/token/oauth/?project_id=...` (retrieve a project SAPI token for use against the Solver API). Backs the Ocean SDK's interactive Leap authorization flow, allowing developers to onboard, switch projects, and rotate SAPI tokens without leaving their development environment.
+- [D Wave Authentication](https://apis.io/security/d-wave/d-wave-authentication/)
+- [D Wave Domain Security](https://apis.io/security/d-wave/d-wave-domain-security/)
 
-- **Human URL:** [https://docs.dwavequantum.com/en/latest/leap_sapi/leap_api.html](https://docs.dwavequantum.com/en/latest/leap_sapi/leap_api.html)
-- **Base URL:** `https://cloud.dwavesys.com/leap/api`
+#### OAuth scopes (1)
 
-#### Tags
+The permissions the API asks for.
 
-- Quantum Computing
-- Leap
-- Account
-- Projects
-- OAuth
+- [D Wave Scopes](https://apis.io/scopes/d-wave/d-wave-scopes/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://docs.dwavequantum.com/en/latest/leap_sapi/leap_api.html)
-- [OpenAPI](openapi/d-wave-leap-account-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/d-wave-leap-account-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/d-wave-leap-account-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Example](examples/d-wave-leap-projects-example.json)
+Published plans, tiers and prices.
 
-### D-Wave Leap Hybrid Solvers
+- [D Wave Plans Pricing](https://apis.io/plans/d-wave/d-wave-plans-pricing/)
 
-Quantum-classical hybrid solvers accessible via SAPI. Five hybrid solver families — BQM (binary quadratic), CQM (constrained quadratic, supports equality/inequality constraints), DQM (discrete quadratic), NL (nonlinear, the Industrial Optimization workhorse) — plus the LeapHybridSampler family. Supports industry-scale problems up to ~2 million variables and constraints; subsecond response times for smaller problems. Submitted as standard SAPI problems with `type=cqm|bqm|dqm|nl` and the relevant solver name.
+#### Rate limits (1)
 
-- **Human URL:** [https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html](https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html)
-- **Base URL:** `https://cloud.dwavesys.com/sapi/v2`
+Published request limits.
 
-#### Tags
+- [D Wave Rate Limits](https://apis.io/rate-limits/d-wave/d-wave-rate-limits/)
 
-- Quantum Computing
-- Hybrid
-- Optimization
-- BQM
-- CQM
-- DQM
-- Nonlinear
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [Documentation](https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html)
-- [OpenAPI](openapi/d-wave-hybrid-solvers-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/d-wave-hybrid-solvers.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/d-wave-hybrid-solvers.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/d-wave-cqm-model-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Example](examples/d-wave-cqm-problem-example.json)
+- [D Wave Finops](https://apis.io/finops/d-wave/d-wave-finops/)
 
-### D-Wave QPU Samplers (Advantage / Advantage2)
+## Where to find this API
 
-Direct access to D-Wave quantum annealing QPUs — Advantage (5,000+ qubits, Pegasus topology) and Advantage2 (next-generation, Zephyr topology). Submit Ising or QUBO problems with parameters for annealing schedule, num_reads, chain_strength, reverse annealing, h_gain_schedule, programming thermalization, and readout thermalization. Returned answers contain energies, occurrences, and sample vectors. Use DWaveSampler/EmbeddingComposite from `dwave-system` to embed logical problems onto the physical qubit graph.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- **Human URL:** [https://docs.dwavequantum.com/en/quantum_research/index_about.html](https://docs.dwavequantum.com/en/quantum_research/index_about.html)
-- **Base URL:** `https://cloud.dwavesys.com/sapi/v2`
-
-#### Tags
-
-- Quantum Computing
-- Quantum Annealing
-- QPU
-- Advantage
-- Advantage2
-- Pegasus
-- Zephyr
-
-#### Properties
-
-- [Documentation](https://docs.dwavequantum.com/en/quantum_research/index_about.html)
-- [OpenAPI](openapi/d-wave-qpu-samplers-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/d-wave-qpu-samplers.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/d-wave-qpu-samplers.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/d-wave-qpu-properties-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Example](examples/d-wave-qpu-ising-example.json)
-
-## Common Properties
-
-- [Portal](https://www.dwavequantum.com)
+- [Website](https://www.dwavequantum.com/)
 - [Documentation](https://docs.dwavequantum.com/en/latest/)
-- [Documentation](https://docs.dwavequantum.com/en/industrial_optimization/index_get_started.html)
-- [Documentation](https://docs.dwavequantum.com/en/quantum_research/index_get_started.html)
-- [Documentation](https://docs.dwavequantum.com/en/concepts/index.html)
-- [Getting Started](https://www.dwavequantum.com/build/getting-started/)
-- [Sign Up](https://www.dwavequantum.com/get-started-with-d-wave/)
-- [Sign Up](https://cloud.dwavesys.com/leap/signup/)
-- [Sandbox](https://cloud.dwavesys.com/leap/)
-- [GitHub Organization](https://github.com/dwavesystems)
-- [GitHub Organization](https://github.com/dwave-examples)
-- [SDK](https://github.com/dwavesystems/dwave-ocean-sdk)
-- [SDK](https://github.com/dwavesystems/dwave-cloud-client)
-- [SDK](https://github.com/dwavesystems/dwave-system)
-- [SDK](https://github.com/dwavesystems/dimod)
-- [SDK](https://github.com/dwavesystems/dwave-hybrid)
-- [SDK](https://github.com/dwavesystems/dwave-samplers)
-- [SDK](https://github.com/dwavesystems/dwave-optimization)
-- [SDK](https://github.com/dwavesystems/dwave-neal)
-- [SDK](https://github.com/dwavesystems/dwave-tabu)
-- [SDK](https://github.com/dwavesystems/dwave-greedy)
-- [SDK](https://github.com/dwavesystems/dwave-preprocessing)
-- [Tool](https://github.com/dwavesystems/dwave-inspector)
-- [SDK](https://github.com/dwavesystems/minorminer)
-- [SDK](https://github.com/dwavesystems/dwave-graphs)
-- [SDK](https://github.com/dwavesystems/dwave-gate)
-- [SDK](https://github.com/dwavesystems/penaltymodel)
-- [Plugins](https://github.com/dwavesystems/dwave-pytorch-plugin)
-- [Plugins](https://github.com/dwavesystems/dwave-scikit-learn-plugin)
-- [Plugins](https://github.com/dwavesystems/dwave-qiskit-plugin)
-- [Tool](https://github.com/dwavesystems/ocean-docker)
-- [Tool](https://github.com/dwavesystems/ocean-devcontainer)
-- [Documentation](https://github.com/dwavesystems/leapide-docs)
-- [Code Examples](https://github.com/dwave-examples)
-- [Code Examples](https://github.com/dwave-examples/template)
-- [Code Examples](https://github.com/dwave-examples/simple-ocean-programs)
-- [Code Examples](https://github.com/dwave-examples/hybrid-computing-notebook)
-- [Code Examples](https://github.com/dwave-examples/pegasus-notebook)
-- [Code Examples](https://github.com/dwave-examples/reverse-annealing-notebook)
-- [Code Examples](https://github.com/dwave-examples/factoring-notebook)
-- [Code Examples](https://github.com/dwave-examples/feature-selection-notebook)
-- [SDK](https://pypi.org/project/dwave-ocean-sdk/)
-- [SDK](https://pypi.org/project/dwave-cloud-client/)
-- [SDK](https://pypi.org/project/dwave-system/)
-- [SDK](https://pypi.org/project/dimod/)
-- [Portal](https://www.dwavequantum.com/solutions-and-products/cloud-platform/)
-- [Portal](https://www.dwavequantum.com/solutions-and-products/systems/)
-- [Portal](https://www.dwavequantum.com/solutions-and-products/professional-services/)
-- [Blog](https://www.dwavequantum.com/learn/blog/)
-- [Documentation](https://www.dwavequantum.com/learn/resource-library/)
-- [Documentation](https://www.dwavequantum.com/learn/featured-applications/)
-- [Forum](https://support.dwavesys.com/hc/en-us/community/topics)
+- [Getting started](https://www.dwavequantum.com/build/getting-started/)
 - [Support](https://support.dwavesys.com/hc/en-us)
-- [Support](https://www.dwavequantum.com/contact-us/)
-- [Privacy Policy](https://www.dwavequantum.com/legal/privacy-policy/)
-- [Terms of Service](https://www.dwavequantum.com/legal/terms/)
-- [Documentation](https://www.dwavequantum.com/legal/patent-notice/)
-- [Documentation](https://investor.dwavequantum.com)
-- [LinkedIn](https://www.linkedin.com/company/d-wave-systems)
-- [Twitter](https://x.com/dwavequantum)
-- [YouTube](https://www.youtube.com/@dwavequantum)
-- [Plans](https://plans/d-wave-plans-pricing.yml)
-- [Rate Limits](https://rate-limits/d-wave-rate-limits.yml)
-- [Fin Ops](https://finops/d-wave-finops.yml)
-- [Vocabulary](vocabulary/d-wave-vocabulary.yml)
-- [Spectral Rules](rules/d-wave-rules.yml)
-- [Features](undefined)
+- [Blog](https://www.dwavequantum.com/learn/blog/)
+- [Terms of service](https://www.dwavequantum.com/legal/terms/)
+- [Privacy policy](https://www.dwavequantum.com/legal/privacy-policy/)
+- [GitHub](https://github.com/dwavesystems)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 52.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 60.8 |
+| Contract governance | 27.3 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 75.0 |
+| Access clarity | 42.1 |
+
+**Agent readiness 27.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/d-wave/](https://apis.io/providers/d-wave/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for D-Wave: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/d-wave/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
